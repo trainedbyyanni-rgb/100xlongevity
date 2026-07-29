@@ -300,8 +300,7 @@
 
   <!-- CTA (8-WEEK PROGRAM) -->
   <div class="cta-section">
-    <!-- REPLACE WITH TALLY FORM URL -->
-    <a href="#" class="btn-p">Apply for Coaching</a>
+    <a href="https://calendly.com/trainedbyyanni/30min" class="btn-p" target="_blank">Apply for Coaching</a>
     <span class="cta-note">Applications reviewed within 48 hours. If it is a fit we will schedule a call before anything else happens.</span>
   </div>
 
@@ -329,6 +328,11 @@
       </div>
 
       <div class="q-field">
+        <label for="q-phone">Phone Number</label>
+        <input type="tel" id="q-phone" name="phone" required />
+      </div>
+
+      <div class="q-field">
         <label for="q-goal">What do you want to get out of this call?</label>
         <textarea id="q-goal" name="goal" required></textarea>
       </div>
@@ -340,6 +344,26 @@
           <option value="beginner">Beginner (under 1 year)</option>
           <option value="intermediate">Intermediate (1 to 3 years)</option>
           <option value="advanced">Advanced (3+ years)</option>
+        </select>
+      </div>
+
+      <div class="q-field">
+        <label for="q-invest">Are you in a position to invest in yourself professionally right now?</label>
+        <select id="q-invest" name="invest_ready" required>
+          <option value="">Select one</option>
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+          <option value="not_sure">Not sure yet</option>
+        </select>
+      </div>
+
+      <div class="q-field">
+        <label for="q-timeline">How soon are you looking to start?</label>
+        <select id="q-timeline" name="timeline" required>
+          <option value="">Select one</option>
+          <option value="asap">ASAP</option>
+          <option value="within_month">Within the next month</option>
+          <option value="exploring">Just exploring for now</option>
         </select>
       </div>
 
