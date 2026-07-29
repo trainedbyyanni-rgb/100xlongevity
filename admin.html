@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin</title>
+  <link rel="stylesheet" href="assets/style.css" />
+  <style>
+    body { background:#fff; color:#111; font-family:'DM Sans',sans-serif; font-weight: 300; }
+
+    /* ── LOGIN GATE ── */
+    #login-gate {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    #login-gate .gate-logo {
+      font-family:'DM Sans',sans-serif; font-weight: 300;
+      font-size:2rem;
+      letter-spacing:.1em;
+      color:#111;
+      margin-bottom:.5rem;
+    }
+
+    #login-gate input {
+      width:280px;
+      padding:10px 14px;
+      border:1px solid #e8e8e8;
+      font-size:.9rem;
+      font-family:'DM Sans',sans-serif; font-weight: 300;
+      outline:none;
+      text-align:center;
+      letter-spacing:.1em;
+    }
+
+    #login-gate input:focus { border-color:#111; }
+
+    #login-gate button {
+      width:280px;
+      padding:11px;
+      background:#111;
+      color:#fff;
+      font-family:'DM Sans',sans-serif; font-weight: 300;
+      font-size:.95rem;
+      letter-spacing:.18em;
+      border:none;
+      cursor:pointer;
+      transition:opacity .15s;
+    }
+
+    #login-gate button:hover { opacity:.8; }
+    #login-gate .err { font-size:.75rem; color:#e00; display:none; }
+
+    /* ── ADMIN PANEL ── */
+    #admin-panel { display:none; max-width:860px; margin:0 auto; padding:3rem 2rem 5rem; }
+
+    .admin-header {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      margin-bottom:2.5rem;
+      padding-bottom:1.2rem;
+      border-bottom:1px solid #e8e8e8;
+    }
+
+    .admin-header h1 { font-family:'DM Sans',sans-serif; font-size:1.6rem; letter-spacing:.08em; font-weight: 300; }
+
+    .admin-header .logout-btn {
+      font-size:.7rem;
+      font-weight:600;
+      letter-spacing:.1em;
+      text-transform:uppercase;
+      color:#999;
+      cursor:pointer;
+      background:none;
+      border:none;
+    }
+
+    .admin-header .logout-btn:hover { color:#111; }
+
+    /* ── NEW POST FORM ── */
+    .form-group { margin-bottom:1.2rem; }
+
+    .form-group label {
+      display:block;
+      font-size:.65rem;
+      font-weight:700;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      color:#999;
+      margin-bottom:.4rem;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width:100%;
+      padding:10px 12px;
+      border:1px solid #e8e8e8;
+      font-size:.88rem;
+      font-family:'DM Sans',sans-serif; font-weight: 300;
+      color:#111;
+      outline:none;
+      transition:border-color .15s;
+      background:#fff;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus { border-color:#111; }
+
+    .form-group textarea { min-height:320px; resize:vertical; line-height:1.7; }
+
+    .form-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; }
+
+    .generate-btn {
+      font-family:'DM Sans',sans-serif; font-weight: 300;
+      font-size:.95rem;
+      letter-spacing:.18em;
+      background:#111;
+      color:#fff;
+      border:none;
+      padding:12px 32px;
+      cursor:pointer;
+      transition:opacity .15s;
+      margin-top:.5rem;
+    }
+
+    .generate-btn:hover { opacity:.8; }
+
+    /* ── RESULT PANEL ── */
+    #result-panel {
+      display: none;
+      margin-top: 1.8rem;
+      padding: 1.4rem;
+      border: 1px solid #e8e8e8;
+      background: #fafafa;
+    }
+
+    #result-panel .result-label {
+      font-size: .62rem;
+      font-weight: 700;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: #111;
+      margin-bottom: .9rem;
+    }
+
+    #result-panel p {
+      font-size: .82rem;
+      color: #555;
+      line-height: 1.65;
+      margin-bottom: .9rem;
+    }
+
+    #result-panel code {
+      font-family: monospace;
+      font-size: .82rem;
+      background: #fff;
+      border: 1px solid #e8e8e8;
+      padding: 1px 5px;
+    }
+
+    #result-snippet {
+      font-family: monospace;
+      font-size: .72rem;
+      color: #444;
+      background: #fff;
+      border: 1px solid #e8e8e8;
+      padding: .9rem;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      word-break: break-all;
+      line-height: 1.65;
+      margin: 0;
+    }
+
+    /* content hint */
+    .content-hint {
+      font-size:.68rem;
+      color:#bbb;
+      margin-top:.3rem;
+      line-height:1.5;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- LOGIN -->
+  <div id="login-gate">
+    <div class="gate-logo">100XLONGEVITY</div>
+    <input type="password" id="pw-input" placeholder="Enter access code" onkeydown="if(event.key==='Enter')tryLogin()" />
+    <button onclick="tryLogin()">Enter</button>
+    <span class="err" id="login-err">Incorrect code.</span>
+  </div>
+
+  <!-- ADMIN PANEL -->
+  <div id="admin-panel">
+    <div class="admin-header">
+      <h1>New Post</h1>
+      <button class="logout-btn" onclick="logout()">Log Out</button>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Date</label>
+        <input type="text" id="post-date" placeholder="Jun 20, 2026" />
+      </div>
+      <div class="form-group">
+        <label>Read Time</label>
+        <input type="text" id="post-readtime" placeholder="10 min" />
+      </div>
+      <div class="form-group">
+        <label>Tag</label>
+        <input type="text" id="post-tag" placeholder="Neuroscience" />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Post Title</label>
+      <input type="text" id="post-title" placeholder="BDNF: The Brain's Growth Molecule" />
+    </div>
+
+    <div class="form-group">
+      <label>Excerpt (shown on blog index)</label>
+      <input type="text" id="post-excerpt" placeholder="Short one-line summary of the post..." />
+    </div>
+
+    <div class="form-group">
+      <label>YouTube Video Link (optional)</label>
+      <input type="text" id="post-video" placeholder="https://youtu.be/..." />
+    </div>
+
+    <div class="form-group">
+      <label>Post Content</label>
+      <textarea id="post-content" placeholder="Write your full post here...&#10;&#10;Use blank lines between paragraphs.&#10;&#10;## Section Header&#10;Your content here...&#10;&#10;## Next Section&#10;More content..."></textarea>
+      <div class="content-hint">Use ## for section headers. Blank lines = new paragraphs. Download the file, move it to blog/, then copy the snippet below into blog/index.html.</div>
+    </div>
+
+    <button class="generate-btn" onclick="generatePost()">Generate Post File</button>
+
+    <!-- RESULT PANEL — shown after generation -->
+    <div id="result-panel">
+      <div class="result-label">File Ready</div>
+      <p><code id="result-filename"></code> was downloaded. Move it into the <code>blog/</code> folder, then paste this row into <code>blog/index.html</code> inside the <code>.post-list</code> div (newest posts at the top):</p>
+      <pre id="result-snippet"></pre>
+    </div>
+
+  </div>
+
+  <script>
+    var PASS = 'yannilogin';
+
+    function tryLogin() {
+      var val = document.getElementById('pw-input').value.trim();
+      if (val === PASS) {
+        sessionStorage.setItem('admin_auth', '1');
+        document.getElementById('login-gate').style.display = 'none';
+        document.getElementById('admin-panel').style.display = 'block';
+      } else {
+        document.getElementById('login-err').style.display = 'block';
+      }
+    }
+
+    function logout() {
+      sessionStorage.removeItem('admin_auth');
+      location.reload();
+    }
+
+    if (sessionStorage.getItem('admin_auth') === '1') {
+      document.getElementById('login-gate').style.display = 'none';
+      document.getElementById('admin-panel').style.display = 'block';
+    }
+
+    function escHtml(s) {
+      return String(s || '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    function slugify(title) {
+      return title.toLowerCase()
+        .replace(/[^a-z0-9\s-]/g, '')
+        .replace(/\s+/g, '-')
+        .replace(/-+/g, '-')
+        .trim();
+    }
+
+    function parseContent(raw) {
+      return raw.split(/\n\s*\n/).map(function (block) {
+        block = block.trim();
+        if (!block) return '';
+        if (block.startsWith('## ')) {
+          return '<h2>' + escHtml(block.slice(3).trim()) + '</h2>';
+        }
+        var lines = block.split('\n')
+          .map(function (l) { return escHtml(l.trim()); })
+          .filter(Boolean);
+        return '<p>' + lines.join('<br>') + '</p>';
+      }).filter(Boolean).join('\n  ');
+    }
+
+    function generatePost() {
+      var title    = document.getElementById('post-title').value.trim();
+      var date     = document.getElementById('post-date').value.trim();
+      var excerpt  = document.getElementById('post-excerpt').value.trim();
+      var content  = document.getElementById('post-content').value.trim();
+      var readtime = document.getElementById('post-readtime').value.trim();
+      var tag      = document.getElementById('post-tag').value.trim();
+      var video    = document.getElementById('post-video').value.trim();
+
+      if (!title || !content) {
+        alert('Title and content are required.');
+        return;
+      }
+
+      var slug     = slugify(title) || ('post-' + Date.now());
+      var filename = slug + '.html';
+      var bodyHtml = parseContent(content);
+      var tagHtml  = tag ? '<span class="tag">' + escHtml(tag) + '</span>' : '';
+      var videoHtml = video
+        ? '<div class="video-callout">&#9654; Watch the video associated with this post: <a href="' + escHtml(video) + '" target="_blank" rel="noopener">here</a></div>\n\n  '
+        : '';
+      var readtimeMeta = readtime
+        ? '<span>\u00b7</span><span>' + escHtml(readtime) + '</span>'
+        : '';
+
+      // '<' + '/script>' avoids prematurely closing the outer script block in admin.html
+      var SC = '<' + '/script>';
+
+      var html =
+        '<!DOCTYPE html>\n' +
+        '<html lang="en">\n' +
+        '<head>\n' +
+        '  <meta charset="UTF-8" />\n' +
+        '  <meta name="viewport" content="width=device-width, initial-scale=1.0" />\n' +
+        '  <title>' + escHtml(title) + ' \u2014 100X Longevity</title>\n' +
+        '  <link rel="stylesheet" href="../assets/style.css" />\n' +
+        '  <style>\n' +
+        '    .post-header { max-width:720px; margin:0 auto; padding:5rem 2rem 0; }\n' +
+        '    .post-back { display:inline-flex; align-items:center; gap:.4rem; font-size:.7rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin-bottom:2rem; transition:color .15s; }\n' +
+        '    .post-back:hover { color:var(--text); }\n' +
+        '    .post-title-h1 { font-family:var(--font-display); font-size:clamp(1.9rem,4vw,2.8rem); line-height:1.1; letter-spacing:.03em; color:var(--text); margin-bottom:.5rem; }\n' +
+        '    .post-meta { display:flex; gap:.8rem; font-size:.7rem; color:var(--muted); flex-wrap:wrap; padding:.8rem 0 2rem; border-bottom:1px solid var(--border); margin-bottom:2.5rem; }\n' +
+        '    .post-tags { display:flex; gap:.6rem; margin-bottom:1rem; flex-wrap:wrap; }\n' +
+        '    .post-body { max-width:720px; margin:0 auto; padding:0 2rem 5rem; }\n' +
+        '    .post-body h2 { font-family:var(--font-display); font-size:1rem; letter-spacing:.12em; color:var(--text); margin:2.2rem 0 .7rem; padding-bottom:.5rem; border-bottom:1px solid var(--border); }\n' +
+        '    .post-body p { font-size:.92rem; color:#444; line-height:1.85; margin-bottom:1rem; }\n' +
+        '    .video-callout { display:flex; align-items:center; gap:.8rem; background:var(--bg2); border:1px solid var(--border); padding:.9rem 1.2rem; margin-bottom:2.5rem; font-size:.85rem; color:var(--muted); }\n' +
+        '    .video-callout a { color:var(--text); font-weight:600; text-decoration:underline; }\n' +
+        '    @media (max-width:640px) { .post-header, .post-body { padding-left:1.2rem; padding-right:1.2rem; } .post-header { padding-top:4rem; } }\n' +
+        '  </style>\n' +
+        '</head>\n' +
+        '<body>\n\n' +
+        '<nav class="site-nav">\n' +
+        '  <a href="../index.html" class="site-nav__mark">100X Longevity</a>\n' +
+        '  <ul class="site-nav__links">\n' +
+        '    <li><a href="../index.html">Home</a></li>\n' +
+        '    <li><a href="../cognitive/index.html">Cognitive</a></li>\n' +
+        '    <li><a href="../videos.html">Videos</a></li>\n' +
+        '    <li><a href="../sources.html">Sources</a></li>\n' +
+        '    <li><a href="../coaching.html">Coaching</a></li>\n' +
+        '    <li><a href="../compounds/index.html">Compounds</a></li>\n' +
+        '  </ul>\n' +
+        '  <button class="site-nav__toggle" aria-label="Open menu" aria-expanded="false">Menu</button>\n' +
+        '  <div class="site-nav__overlay">\n' +
+        '    <a href="../index.html">Home</a>\n' +
+        '    <a href="../cognitive/index.html">Cognitive</a>\n' +
+        '    <a href="../videos.html">Videos</a>\n' +
+        '    <a href="../sources.html">Sources</a>\n' +
+        '    <a href="../coaching.html">Coaching</a>\n' +
+        '    <a href="../compounds/index.html">Compounds</a>\n' +
+        '  </div>\n' +
+        '</nav>\n\n' +
+        '<div class="post-header">\n' +
+        '  <a href="index.html" class="post-back">\u2190 All Posts</a>\n' +
+        '  <div class="post-tags">' + tagHtml + '</div>\n' +
+        '  <h1 class="post-title-h1">' + escHtml(title) + '</h1>\n' +
+        '  <div class="post-meta">\n' +
+        '    <span>@100xyanni</span>\n' +
+        '    <span>\u00b7</span>\n' +
+        '    <span>' + escHtml(date) + '</span>\n' +
+        '    ' + readtimeMeta + '\n' +
+        '  </div>\n' +
+        '</div>\n\n' +
+        '<div class="post-body">\n' +
+        '  ' + videoHtml + bodyHtml + '\n' +
+        '</div>\n\n' +
+        '<footer>\n' +
+        '  <span class="footer-logo">100XLONGEVITY</span>\n' +
+        '  <span class="footer-note">All content is for educational and informational purposes only.</span>\n' +
+        '</footer>\n\n' +
+        '<script>\n' +
+        '  (function () {\n' +
+        '    var toggle = document.querySelector(\'.site-nav__toggle\');\n' +
+        '    var overlay = document.querySelector(\'.site-nav__overlay\');\n' +
+        '    if (!toggle || !overlay) return;\n' +
+        '    toggle.addEventListener(\'click\', function () {\n' +
+        '      var isOpen = overlay.classList.toggle(\'is-open\');\n' +
+        '      toggle.setAttribute(\'aria-expanded\', isOpen ? \'true\' : \'false\');\n' +
+        '      toggle.textContent = isOpen ? \'Close\' : \'Menu\';\n' +
+        '      document.body.style.overflow = isOpen ? \'hidden\' : \'\';\n' +
+        '    });\n' +
+        '    overlay.querySelectorAll(\'a\').forEach(function (link) {\n' +
+        '      link.addEventListener(\'click\', function () {\n' +
+        '        overlay.classList.remove(\'is-open\');\n' +
+        '        toggle.setAttribute(\'aria-expanded\', \'false\');\n' +
+        '        toggle.textContent = \'Menu\';\n' +
+        '        document.body.style.overflow = \'\';\n' +
+        '      });\n' +
+        '    });\n' +
+        '  })();\n' +
+        SC + '\n' +
+        '</body>\n' +
+        '</html>';
+
+      // Trigger browser download
+      var blob = new Blob([html], { type: 'text/html' });
+      var url  = URL.createObjectURL(blob);
+      var a    = document.createElement('a');
+      a.href     = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+
+      // Build the blog/index.html snippet for the user to copy
+      var indexRow =
+        '<a href="' + filename + '" class="post-row">\n' +
+        '  <span class="post-date">' + escHtml(date) + '</span>\n' +
+        '  <div>\n' +
+        (tag ? '    <span class="post-tag">' + escHtml(tag) + '</span>\n' : '') +
+        '    <div class="post-title">' + escHtml(title) + '</div>\n' +
+        '    <div class="post-excerpt">' + escHtml(excerpt) + '</div>\n' +
+        '  </div>\n' +
+        '  <span class="post-time">' + escHtml(readtime) + '</span>\n' +
+        '</a>';
+
+      document.getElementById('result-filename').textContent = filename;
+      document.getElementById('result-snippet').textContent  = indexRow;
+      document.getElementById('result-panel').style.display  = 'block';
+      document.getElementById('result-panel').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    // Default to today's date
+    var today  = new Date();
+    var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    document.getElementById('post-date').value =
+      months[today.getMonth()] + ' ' + today.getDate() + ', ' + today.getFullYear();
+  </script>
+
+</body>
+</html>

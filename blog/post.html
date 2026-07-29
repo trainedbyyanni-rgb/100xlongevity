@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Post — 100X Longevity</title>
+  <link rel="stylesheet" href="../assets/style.css" />
+  <style>
+    .post-wrap { max-width:700px; margin:0 auto; padding:3.5rem 2rem 5rem; }
+
+    .post-back {
+      display:inline-flex; align-items:center; gap:.4rem;
+      font-size:.7rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase;
+      color:#bbb; margin-bottom:2rem; transition:color .15s; cursor:pointer;
+    }
+    .post-back:hover { color:#111; }
+
+    .post-header { margin-bottom:2.5rem; padding-bottom:2rem; border-bottom:1px solid #e8e8e8; }
+
+    .post-tag {
+      display:inline-block; font-size:.6rem; font-weight:700; letter-spacing:.1em;
+      text-transform:uppercase; border:1px solid #e8e8e8; color:#bbb;
+      padding:2px 8px; margin-bottom:1rem;
+    }
+
+    .post-header h1 {
+      font-family:'DM Sans',sans-serif; font-weight: 300;
+      font-size:clamp(1.8rem,4vw,3rem);
+      letter-spacing:.03em; line-height:1.1; color:#111; margin-bottom:.8rem;
+    }
+
+    .post-meta { display:flex; gap:1rem; font-size:.7rem; color:#bbb; flex-wrap:wrap; }
+
+    .video-callout {
+      display:flex; align-items:center; gap:.8rem;
+      background:#fafafa; border:1px solid #e8e8e8;
+      border-left:2px solid #111; padding:.9rem 1.2rem;
+      margin-bottom:2.5rem; font-size:.85rem; color:#999;
+    }
+    .video-callout a { color:#111; font-weight:600; text-decoration:underline; }
+
+    /* rendered content */
+    #post-content h2 {
+      font-family:'DM Sans',sans-serif; font-size:1rem; letter-spacing:.12em; font-weight: 300;
+      color:#111; margin:2.5rem 0 .8rem; padding-bottom:.5rem; border-bottom:1px solid #e8e8e8;
+    }
+    #post-content p {
+      font-size:.92rem; color:#444; line-height:1.85; margin-bottom:1rem;
+    }
+
+    .not-found { padding:4rem 2rem; text-align:center; }
+    .not-found p { font-size:.9rem; color:#bbb; }
+
+    @media (max-width:640px) { .post-wrap { padding:2rem 1.2rem 3rem; } }
+  </style>
+</head>
+<body>
+
+  <nav class="site-nav">
+    <a href="../index.html" class="site-nav__mark">100X Longevity</a>
+    <ul class="site-nav__links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../cognitive/index.html">Cognitive</a></li>
+      <li><a href="../videos.html">Videos</a></li>
+      <li><a href="../sources.html">Sources</a></li>
+      <li><a href="../coaching.html">Coaching</a></li>
+      <li><a href="../compounds/index.html">Compounds</a></li>
+    </ul>
+    <button class="site-nav__toggle" aria-label="Open menu" aria-expanded="false">Menu</button>
+    <div class="site-nav__overlay">
+      <a href="../index.html">Home</a>
+      <a href="../cognitive/index.html">Cognitive</a>
+      <a href="../videos.html">Videos</a>
+      <a href="../sources.html">Sources</a>
+      <a href="../coaching.html">Coaching</a>
+      <a href="../compounds/index.html">Compounds</a>
+    </div>
+  </nav>
+
+  <div class="post-wrap" id="post-wrap">
+    <div class="not-found"><p>Loading...</p></div>
+  </div>
+
+  <footer>
+    <span class="footer-logo">100XLONGEVITY</span>
+    <span class="footer-note">All content is for educational and informational purposes only.</span>
+  </footer>
+
+  <script>
+    const STORE_KEY = '100xyanni_posts';
+
+    function getPosts() {
+      try { return JSON.parse(localStorage.getItem(STORE_KEY)) || []; }
+      catch { return []; }
+    }
+
+    function parseContent(raw) {
+      // Split into blocks by blank lines
+      const blocks = raw.split(/\n\s*\n/);
+      return blocks.map(block => {
+        block = block.trim();
+        if (!block) return '';
+        if (block.startsWith('## ')) {
+          return `<h2>${block.replace(/^## /, '')}</h2>`;
+        }
+        // inline line breaks within a block
+        const lines = block.split('\n').map(l => l.trim()).filter(Boolean);
+        return `<p>${lines.join('<br>')}</p>`;
+      }).join('');
+    }
+
+    function render() {
+      const params = new URLSearchParams(window.location.search);
+      const id = params.get('id');
+      const wrap = document.getElementById('post-wrap');
+
+      if (!id) {
+        wrap.innerHTML = '<div class="not-found"><p>Post not found.</p></div>';
+        return;
+      }
+
+      const posts = getPosts();
+      const post = posts.find(p => p.id === id);
+
+      if (!post) {
+        wrap.innerHTML = '<div class="not-found"><p>Post not found. It may have been deleted.</p></div>';
+        return;
+      }
+
+      let videoBlock = '';
+      if (post.video) {
+        videoBlock = `<div class="video-callout">▶ Watch the video associated with this post: <a href="${post.video}" target="_blank" rel="noopener">here</a></div>`;
+      }
+
+      wrap.innerHTML = `
+        <a href="index.html" class="post-back">← All Posts</a>
+        <div class="post-header">
+          ${post.tag ? `<span class="post-tag">${post.tag}</span>` : ''}
+          <h1>${post.title}</h1>
+          <div class="post-meta">
+            <span>@100xyanni</span>
+            <span>·</span>
+            <span>${post.date || ''}</span>
+            ${post.readtime ? `<span>·</span><span>${post.readtime}</span>` : ''}
+          </div>
+        </div>
+        ${videoBlock}
+        <div id="post-content">${parseContent(post.content)}</div>
+      `;
+
+      // Update page title
+      document.title = post.title + ' — 100X Longevity';
+    }
+
+    render();
+  </script>
+
+<script>
+  (function () {
+    const toggle = document.querySelector('.site-nav__toggle');
+    const overlay = document.querySelector('.site-nav__overlay');
+    if (!toggle || !overlay) return;
+    toggle.addEventListener('click', function () {
+      const isOpen = overlay.classList.toggle('is-open');
+      toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      toggle.textContent = isOpen ? 'Close' : 'Menu';
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+    overlay.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        overlay.classList.remove('is-open');
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.textContent = 'Menu';
+        document.body.style.overflow = '';
+      });
+    });
+  })();
+</script>
+</body>
+</html>

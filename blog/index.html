@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog — 100X Longevity</title>
+  <link rel="stylesheet" href="../assets/style.css" />
+  <style>
+    .page-hero { padding:4rem 2.5rem 3rem; max-width:1100px; margin:0 auto; border-bottom:1px solid #e8e8e8; }
+    .page-hero h1 { font-family:'DM Sans',sans-serif; font-size:clamp(2.5rem,6vw,4.5rem); letter-spacing:.04em; line-height:1; color:#111; margin-bottom:.6rem; font-weight: 300; }
+    .page-hero p { font-size:.88rem; color:#999; max-width:460px; }
+
+    .post-list { max-width:1100px; margin:0 auto; padding:2.5rem 2.5rem; }
+
+    .post-row {
+      display:grid;
+      grid-template-columns:80px 1fr 64px;
+      gap:1.2rem;
+      align-items:start;
+      padding:1.3rem 0;
+      border-bottom:1px solid #f0f0f0;
+      cursor:pointer;
+      transition:opacity .15s;
+      text-decoration:none;
+      color:inherit;
+    }
+
+    .post-row:hover { opacity:.6; }
+    .post-row:last-child { border-bottom:none; }
+    .post-date { font-size:.7rem; color:#bbb; padding-top:3px; letter-spacing:.03em; }
+    .post-title { font-family:'DM Sans',sans-serif; font-size:1.1rem; letter-spacing:.03em; color:#111; line-height:1.25; margin-bottom:4px; font-weight: 300; }
+    .post-excerpt { font-size:.78rem; color:#aaa; line-height:1.55; }
+    .post-tag { display:inline-block; font-size:.58rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; border:1px solid #e8e8e8; color:#bbb; padding:2px 7px; margin-bottom:6px; }
+    .post-time { font-size:.65rem; color:#ccc; text-align:right; padding-top:3px; }
+
+    .empty-state { padding:4rem 2.5rem; text-align:center; }
+    .empty-state p { font-size:.88rem; color:#bbb; }
+
+    @media (max-width:640px) {
+      .post-row { grid-template-columns:60px 1fr; }
+      .post-time { display:none; }
+      .page-hero, .post-list { padding-left:1.2rem; padding-right:1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="site-nav">
+    <a href="../index.html" class="site-nav__mark">100X Longevity</a>
+    <ul class="site-nav__links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../cognitive/index.html">Cognitive</a></li>
+      <li><a href="../videos.html">Videos</a></li>
+      <li><a href="../sources.html">Sources</a></li>
+      <li><a href="../coaching.html">Coaching</a></li>
+      <li><a href="../compounds/index.html">Compounds</a></li>
+    </ul>
+    <button class="site-nav__toggle" aria-label="Open menu" aria-expanded="false">Menu</button>
+    <div class="site-nav__overlay">
+      <a href="../index.html">Home</a>
+      <a href="../cognitive/index.html">Cognitive</a>
+      <a href="../videos.html">Videos</a>
+      <a href="../sources.html">Sources</a>
+      <a href="../coaching.html">Coaching</a>
+      <a href="../compounds/index.html">Compounds</a>
+    </div>
+  </nav>
+
+  <div class="page-hero">
+    <p class="section-label">All Posts</p>
+    <h1>The Research,<br>Broken Down</h1>
+    <p>Mechanism-first, citation-backed, written to go deeper than the video.</p>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════════════
+       POST LIST — static HTML. Each post is a real .html file in blog/.
+       To add a new post:
+         1. Use admin.html to generate the post file and download it.
+         2. Move the downloaded file into this blog/ folder.
+         3. Paste the row snippet (shown in admin after generating) here,
+            ABOVE any existing rows (newest first).
+
+       Row format:
+       <a href="your-post-slug.html" class="post-row">
+         <span class="post-date">Jul 1, 2026</span>
+         <div>
+           <span class="post-tag">Neuroscience</span>
+           <div class="post-title">Your Post Title Here</div>
+           <div class="post-excerpt">One-line summary shown on this index.</div>
+         </div>
+         <span class="post-time">10 min</span>
+       </a>
+  ════════════════════════════════════════════════════════════════════ -->
+
+  <div class="post-list">
+    <!-- ADD POST ROWS ABOVE THIS LINE -->
+    <div class="empty-state"><p>No posts yet.</p></div>
+  </div>
+
+  <footer>
+    <span class="footer-logo">100XLONGEVITY</span>
+    <span class="footer-note">All content is for educational and informational purposes only.</span>
+  </footer>
+
+<script>
+  (function () {
+    const toggle = document.querySelector('.site-nav__toggle');
+    const overlay = document.querySelector('.site-nav__overlay');
+    if (!toggle || !overlay) return;
+    toggle.addEventListener('click', function () {
+      const isOpen = overlay.classList.toggle('is-open');
+      toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      toggle.textContent = isOpen ? 'Close' : 'Menu';
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+    overlay.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        overlay.classList.remove('is-open');
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.textContent = 'Menu';
+        document.body.style.overflow = '';
+      });
+    });
+  })();
+</script>
+</body>
+</html>

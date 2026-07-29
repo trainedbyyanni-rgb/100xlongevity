@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Coaching — 100X Longevity</title>
+  <link rel="stylesheet" href="assets/style.css" />
+  <style>
+    /* ── PAGE HERO ── */
+    .page-hero {
+      padding: 4.5rem 2.5rem 3.5rem;
+      max-width: 900px;
+      margin: 0 auto;
+      border-bottom: 1px solid var(--border);
+    }
+    .page-hero h1 {
+      font-family: 'DM Sans', sans-serif; font-weight: 300;
+      font-size: clamp(2.8rem, 7vw, 5rem);
+      letter-spacing: 0.04em;
+      line-height: 0.96;
+      color: var(--text);
+      margin-bottom: 1.2rem;
+    }
+    .page-hero .subtitle {
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 580px;
+      line-height: 1.75;
+    }
+
+    /* ── PROSE SECTIONS ── */
+    .coaching-section {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 3rem 2.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .coaching-section > p {
+      font-size: 0.95rem;
+      color: #444;
+      line-height: 1.9;
+      margin-bottom: 1.2rem;
+      max-width: 680px;
+    }
+    .coaching-section > p:last-child { margin-bottom: 0; }
+    .coaching-section h2 {
+      font-family: 'DM Sans', sans-serif; font-weight: 300;
+      font-size: 1.3rem;
+      letter-spacing: 0.1em;
+      color: var(--text);
+      margin-bottom: 1.8rem;
+    }
+
+    /* ── COVER GRID (4 items, 2×2) ── */
+    .cover-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+    }
+    .cover-card {
+      background: var(--bg);
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+    .cover-num {
+      font-family: 'DM Sans', sans-serif; font-weight: 300;
+      font-size: 2rem;
+      color: #e0e0e0;
+      line-height: 1;
+    }
+    .cover-card p {
+      font-size: 0.88rem;
+      color: #555;
+      line-height: 1.8;
+      margin: 0;
+    }
+
+    /* ── NOT FOR STRIP (3 items) ── */
+    .not-for-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+    }
+    .not-for-card {
+      background: var(--bg2);
+      padding: 1.8rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+    .not-for-label {
+      font-family: 'DM Sans', sans-serif; font-weight: 300;
+      font-size: 0.62rem;
+      letter-spacing: 0.22em;
+      color: #ccc;
+      text-transform: uppercase;
+    }
+    .not-for-card p {
+      font-size: 0.85rem;
+      color: #666;
+      line-height: 1.75;
+      margin: 0;
+    }
+
+    /* ── CTA BLOCK ── */
+    .cta-section {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 3.5rem 2.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .btn-p {
+      display: inline-block;
+      background: var(--text);
+      color: var(--bg);
+      font-family: 'DM Sans', sans-serif; font-weight: 300;
+      font-size: 0.95rem;
+      letter-spacing: 0.18em;
+      padding: 14px 34px;
+      border: 1px solid var(--text);
+      transition: opacity 0.15s;
+      text-decoration: none;
+    }
+    .btn-p:hover { opacity: 0.8; }
+    .cta-note {
+      display: block;
+      margin-top: 1rem;
+      font-size: 0.75rem;
+      color: #bbb;
+      line-height: 1.65;
+    }
+
+    @media (max-width: 760px) {
+      .cover-grid { grid-template-columns: 1fr; }
+      .not-for-grid { grid-template-columns: 1fr; }
+      .page-hero,
+      .coaching-section,
+      .cta-section { padding-left: 1.2rem; padding-right: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="site-nav">
+    <a href="index.html" class="site-nav__mark">100X Longevity</a>
+    <ul class="site-nav__links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="cognitive/index.html">Cognitive</a></li>
+      <li><a href="videos.html">Videos</a></li>
+      <li><a href="sources.html">Sources</a></li>
+      <li><a href="coaching.html">Coaching</a></li>
+      <li><a href="compounds/index.html">Compounds</a></li>
+    </ul>
+    <button class="site-nav__toggle" aria-label="Open menu" aria-expanded="false">Menu</button>
+    <div class="site-nav__overlay">
+      <a href="index.html">Home</a>
+      <a href="cognitive/index.html">Cognitive</a>
+      <a href="videos.html">Videos</a>
+      <a href="sources.html">Sources</a>
+      <a href="coaching.html">Coaching</a>
+      <a href="compounds/index.html">Compounds</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="page-hero">
+    <p class="section-label">One on One</p>
+    <h1>One on One<br>Coaching</h1>
+    <p class="subtitle">Eight weeks of direct work on training, cognitive performance, and compound protocols, built around your biology rather than a template.</p>
+  </div>
+
+  <!-- OPENING -->
+  <div class="coaching-section">
+    <p>Most coaching in this space is a training program with a meal plan attached. That is not what this is.</p>
+    <p>The work here starts one layer underneath the program itself. Your recovery capacity, your sleep architecture, your baseline neurochemical environment, and your actual response to training stimulus determine whether any program produces results. Two people running identical protocols produce different outcomes because those underlying variables are different, and almost nobody accounts for that before writing the plan.</p>
+    <p>Over eight weeks we identify what is actually limiting you, build the protocol around that, and adjust it as your response data comes in.</p>
+  </div>
+
+  <!-- WHAT THE EIGHT WEEKS COVER -->
+  <div class="coaching-section">
+    <h2>What The Eight Weeks Cover</h2>
+    <div class="cover-grid">
+
+      <div class="cover-card">
+        <div class="cover-num">01</div>
+        <p>Training structure built around your recovery capacity, schedule, and biomechanics rather than a split you found online. This includes exercise selection based on how your structure actually loads the target muscle, not what works for everyone else.</p>
+      </div>
+
+      <div class="cover-card">
+        <div class="cover-num">02</div>
+        <p>Cognitive performance protocol covering sleep architecture, stimulant use if applicable, and the compound decisions that support rather than deplete the systems producing your output.</p>
+      </div>
+
+      <div class="cover-card">
+        <div class="cover-num">03</div>
+        <p>Compound and protocol guidance grounded in mechanism. What is worth running, what is not, what the actual dosing logic is, and what the tradeoffs are. This is research education, not prescription.</p>
+      </div>
+
+      <div class="cover-card">
+        <div class="cover-num">04</div>
+        <p>Direct access for questions as they come up, plus a weekly check in where we review what changed and adjust.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- WHO THIS IS NOT FOR -->
+  <div class="coaching-section">
+    <h2>Who This Is Not For</h2>
+    <div class="not-for-grid">
+
+      <div class="not-for-card">
+        <div class="not-for-label">Not For</div>
+        <p>This is not for someone looking for a meal plan and a workout PDF. Those exist for far less money and they work fine for people who want them.</p>
+      </div>
+
+      <div class="not-for-card">
+        <div class="not-for-label">Not For</div>
+        <p>This is not for someone who wants to be told what to do without understanding why. Half the value here is that you leave able to make these decisions yourself.</p>
+      </div>
+
+      <div class="not-for-card">
+        <div class="not-for-label">Not For</div>
+        <p>This is not for someone unwilling to address sleep and recovery first. Every protocol is downstream of those two variables and there is no compound that compensates for ignoring them.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- THE STRUCTURE -->
+  <div class="coaching-section">
+    <h2>The Structure</h2>
+    <p>Eight weeks. Five clients at a time, no exceptions. Paid in full at the start.</p>
+    <p>The cap is not a scarcity tactic. Coaching at this depth requires actual attention per person and I am running Menkor simultaneously. Five is what I can do properly.</p>
+    <p>Because of the cap, this runs on application rather than direct purchase. If it is not a fit for what you need I will tell you rather than take the money.</p>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-section">
+    <!-- REPLACE WITH TALLY FORM URL -->
+    <a href="#" class="btn-p">Apply for Coaching</a>
+    <span class="cta-note">Applications reviewed within 48 hours. If it is a fit we will schedule a call before anything else happens.</span>
+  </div>
+
+  <footer>
+    <span class="footer-logo">100XLONGEVITY</span>
+    <span class="footer-note">All content is for educational and informational purposes only. Coaching is not medical advice and does not constitute a doctor patient relationship.</span>
+  </footer>
+
+<script>
+  (function () {
+    const toggle = document.querySelector('.site-nav__toggle');
+    const overlay = document.querySelector('.site-nav__overlay');
+    if (!toggle || !overlay) return;
+    toggle.addEventListener('click', function () {
+      const isOpen = overlay.classList.toggle('is-open');
+      toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      toggle.textContent = isOpen ? 'Close' : 'Menu';
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+    overlay.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        overlay.classList.remove('is-open');
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.textContent = 'Menu';
+        document.body.style.overflow = '';
+      });
+    });
+  })();
+</script>
+</body>
+</html>

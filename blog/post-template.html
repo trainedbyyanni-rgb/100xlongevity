@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BPC-157: The Repair Peptide They Don't Talk About — 100X Longevity</title>
+  <link rel="stylesheet" href="../assets/style.css" />
+  <style>
+
+    /* ── POST HEADER ── */
+    .post-header {
+      max-width: 740px;
+      margin: 0 auto;
+      padding: 5rem 2rem 0;
+    }
+
+    .post-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.73rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 2.5rem;
+      transition: color 0.18s;
+    }
+
+    .post-back:hover { color: var(--text); }
+
+    .post-tags {
+      display: flex;
+      gap: 0.6rem;
+      margin-bottom: 1.4rem;
+      flex-wrap: wrap;
+    }
+
+    .post-header h1 {
+      font-family: 'DM Sans', sans-serif; font-weight: 300;
+      font-size: clamp(1.9rem, 4vw, 2.6rem);
+      line-height: 1.22;
+      color: var(--text);
+      margin-bottom: 1.4rem;
+    }
+
+    .post-meta {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      font-size: 0.75rem;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .post-meta .author {
+      font-weight: 600;
+      color: #aaa;
+    }
+
+    .meta-dot {
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: #333;
+      flex-shrink: 0;
+    }
+
+    /* ── POST BODY ── */
+    .post-body {
+      max-width: 740px;
+      margin: 0 auto;
+      padding: 3rem 2rem 4rem;
+    }
+
+    /* Video link callout */
+    .video-callout {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--text);
+      padding: 1rem 1.4rem;
+      margin-bottom: 3rem;
+      font-size: 0.875rem;
+      color: #999;
+    }
+
+    .video-callout a {
+      color: var(--text);
+      font-weight: 600;
+      text-decoration: underline;
+    }
+
+    /* Body typography */
+    .post-body h2 {
+      font-family: 'DM Sans', sans-serif; font-weight: 300;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text);
+      margin: 2.5rem 0 0.8rem;
+      letter-spacing: 0.01em;
+    }
+
+    .post-body h3 {
+      font-family: 'DM Sans', sans-serif; font-weight: 300;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #bbb;
+      margin: 1.8rem 0 0.6rem;
+    }
+
+    .post-body p {
+      font-size: 0.955rem;
+      color: #c8c8c8;
+      line-height: 1.85;
+      margin-bottom: 1.2rem;
+    }
+
+    /* Numbered sections like the reference image */
+    .post-body ol.main-list {
+      list-style: none;
+      counter-reset: main-counter;
+      margin: 1.2rem 0;
+    }
+
+    .post-body ol.main-list > li {
+      counter-increment: main-counter;
+      margin-bottom: 1.4rem;
+    }
+
+    .post-body ol.main-list > li > .list-heading {
+      font-size: 0.955rem;
+      font-weight: 700;
+      color: var(--text);
+      display: flex;
+      gap: 0.6rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .post-body ol.main-list > li > .list-heading::before {
+      content: counter(main-counter) ".";
+      color: var(--text);
+      flex-shrink: 0;
+    }
+
+    /* Sub-list (a., b., c.) */
+    .post-body ol.sub-list {
+      list-style: none;
+      counter-reset: sub-counter;
+      margin-left: 1.4rem;
+    }
+
+    .post-body ol.sub-list > li {
+      counter-increment: sub-counter;
+      font-size: 0.94rem;
+      color: #aaa;
+      line-height: 1.8;
+      margin-bottom: 0.7rem;
+      display: flex;
+      gap: 0.6rem;
+    }
+
+    .post-body ol.sub-list > li::before {
+      content: counter(sub-counter, lower-alpha) ".";
+      color: var(--muted);
+      flex-shrink: 0;
+      min-width: 1.1rem;
+    }
+
+    /* Inline citations */
+    .cite {
+      color: var(--blue);
+      font-size: 0.8em;
+      vertical-align: super;
+      font-weight: 600;
+    }
+
+    /* Blockquote */
+    .post-body blockquote {
+      border-left: 3px solid var(--text);
+      padding: 0.8rem 1.4rem;
+      margin: 2rem 0;
+      background: var(--bg2);
+      font-size: 0.9rem;
+      color: #aaa;
+      font-style: italic;
+    }
+
+    /* Divider */
+    .post-body .section-break {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 3rem 0;
+    }
+
+    /* References section */
+    .references {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .references h2 {
+      font-family: 'DM Sans', sans-serif; font-weight: 300;
+      font-size: 1rem;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      margin-bottom: 1.2rem;
+    }
+
+    .references ol {
+      list-style: decimal;
+      padding-left: 1.4rem;
+    }
+
+    .references ol li {
+      font-size: 0.78rem;
+      color: #555;
+      line-height: 1.6;
+      margin-bottom: 0.5rem;
+    }
+
+    .references ol li a {
+      color: var(--blue);
+    }
+
+    .references ol li a:hover { text-decoration: underline; }
+
+    /* Next/prev nav */
+    .post-nav {
+      max-width: 740px;
+      margin: 0 auto;
+      padding: 2rem;
+      display: flex;
+      justify-content: space-between;
+      border-top: 1px solid var(--border);
+      gap: 1rem;
+    }
+
+    .post-nav a {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      transition: color 0.18s;
+    }
+
+    .post-nav a:hover { color: var(--text); }
+
+    @media (max-width: 640px) {
+      .post-header, .post-body { padding-left: 1.2rem; padding-right: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="site-nav">
+    <a href="../index.html" class="site-nav__mark">100X Longevity</a>
+    <ul class="site-nav__links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../cognitive/index.html">Cognitive</a></li>
+      <li><a href="../videos.html">Videos</a></li>
+      <li><a href="../sources.html">Sources</a></li>
+      <li><a href="../coaching.html">Coaching</a></li>
+      <li><a href="../compounds/index.html">Compounds</a></li>
+    </ul>
+    <button class="site-nav__toggle" aria-label="Open menu" aria-expanded="false">Menu</button>
+    <div class="site-nav__overlay">
+      <a href="../index.html">Home</a>
+      <a href="../cognitive/index.html">Cognitive</a>
+      <a href="../videos.html">Videos</a>
+      <a href="../sources.html">Sources</a>
+      <a href="../coaching.html">Coaching</a>
+      <a href="../compounds/index.html">Compounds</a>
+    </div>
+  </nav>
+
+  <!-- POST HEADER -->
+  <div class="post-header">
+
+    <a href="index.html" class="post-back">← All Posts</a>
+
+    <div class="post-tags">
+      <span class="tag green">Peptide</span>
+      <span class="tag">Recovery</span>
+    </div>
+
+    <h1>BPC-157: The Repair Peptide They Don't Talk About</h1>
+
+    <div class="post-meta">
+      <span class="author">@100xyanni</span>
+      <span class="meta-dot"></span>
+      <span>Jun 20, 2026</span>
+      <span class="meta-dot"></span>
+      <span>12 min read</span>
+    </div>
+
+  </div>
+
+  <!-- POST BODY -->
+  <div class="post-body">
+
+    <!-- Video link -->
+    <div class="video-callout">
+      ▶ To watch the video associated with this post, click <a href="#" target="_blank">here</a>.
+    </div>
+
+    <!-- ─────────────────────────────── -->
+    <h2>Introduction</h2>
+
+    <p>BPC-157 is a synthetic peptide derived from a protein found in human gastric juice. In research models it has demonstrated accelerated tendon and ligament healing, gastroprotective effects, and modulation of the dopaminergic system — making it one of the more interesting multi-system compounds in current peptide research.</p>
+
+    <p>This post breaks down the mechanism, the most relevant studies, and why it's become a staple in recovery-focused research stacks.</p>
+
+    <hr class="section-break" />
+
+    <!-- ─────────────────────────────── -->
+    <h2>What Is BPC-157</h2>
+
+    <p>BPC stands for Body-Protective Compound. It's a pentadecapeptide — 15 amino acids — derived from human gastric juice, where it was first isolated. The sequence doesn't appear naturally in the body in this isolated form; it's a fragment discovered through the process of identifying what in gastric secretion had cytoprotective properties.<span class="cite">[1]</span></p>
+
+    <p>Unlike most peptides that operate through a single receptor or signaling cascade, BPC-157 appears to exert effects through several parallel mechanisms — which is partly what makes it interesting and partly what makes it harder to study cleanly.<span class="cite">[2]</span></p>
+
+    <hr class="section-break" />
+
+    <!-- ─────────────────────────────── -->
+    <h2>Mechanisms of Action</h2>
+
+    <ol class="main-list">
+
+      <li>
+        <div class="list-heading">Angiogenesis and tissue repair</div>
+        <ol class="sub-list">
+          <li>BPC-157 upregulates VEGFR2 expression and promotes new blood vessel formation in injured tissue, which is the primary mechanism behind accelerated tendon and ligament healing observed in rodent models.<span class="cite">[3]</span></li>
+          <li>In transected Achilles tendon models, BPC-157 significantly outperformed controls in functional recovery and collagen organization at the injury site.<span class="cite">[4]</span></li>
+        </ol>
+      </li>
+
+      <li>
+        <div class="list-heading">Dopamine system modulation</div>
+        <ol class="sub-list">
+          <li>BPC-157 has been shown to counteract dopamine depletion induced by amphetamine exposure, normalizing locomotion and exploratory behavior in rodent models.<span class="cite">[5]</span></li>
+          <li>It appears to act on the dopamine system via nitric oxide pathways, rather than directly binding dopamine receptors — a distinction that matters for understanding its behavioral effects.<span class="cite">[6]</span></li>
+        </ol>
+      </li>
+
+      <li>
+        <div class="list-heading">Gastroprotection</div>
+        <ol class="sub-list">
+          <li>The original context for BPC-157 research was gastrointestinal. It accelerates healing of stomach ulcers, esophageal damage, and intestinal anastomosis in research models — one of the most consistent findings in the literature.<span class="cite">[7]</span></li>
+          <li>This is the only system where the research is robust enough that some researchers have proposed it as a potential therapeutic candidate.<span class="cite">[8]</span></li>
+        </ol>
+      </li>
+
+      <li>
+        <div class="list-heading">Nitric oxide pathway interaction</div>
+        <ol class="sub-list">
+          <li>Much of BPC-157's systemic effects appear to be mediated through nitric oxide. It acts as an NO modulator — upregulating it in deficient tissue, downregulating overproduction in inflammatory conditions.<span class="cite">[9]</span></li>
+        </ol>
+      </li>
+
+    </ol>
+
+    <hr class="section-break" />
+
+    <!-- ─────────────────────────────── -->
+    <h2>Research Administration Context</h2>
+
+    <p>In rodent studies, BPC-157 has been administered subcutaneously, intraperitoneally, intragastrically, and in some cases orally. Oral administration showing effects is notable because most peptides are degraded before systemic absorption — which researchers attribute to its origin in the gastric environment and relative stability.<span class="cite">[10]</span></p>
+
+    <blockquote>
+      "BPC 157 is free of side effects in all studied models." — Sikiric et al., Current Pharmaceutical Design, 2018<span class="cite">[11]</span>
+    </blockquote>
+
+    <hr class="section-break" />
+
+    <!-- ─────────────────────────────── -->
+    <h2>Where the Research Is Lacking</h2>
+
+    <p>The overwhelming majority of BPC-157 research is in rodent models. There are no completed human clinical trials as of the time of writing. This is the central limitation when evaluating the literature — the mechanistic data is compelling, but the translational question remains open.<span class="cite">[12]</span></p>
+
+    <p>The lack of human data doesn't invalidate the mechanistic research; it just puts a ceiling on how confidently any claims can be made. That's the honest read.</p>
+
+    <!-- ─────────────────────────────── -->
+    <!-- REFERENCES -->
+    <div class="references">
+      <h2>References</h2>
+      <ol>
+        <li>Sikiric P, et al. Brain-gut Axis and Pentadecapeptide BPC 157: Theoretical and Practical Implications. <em>Curr Neuropharmacol.</em> 2016.</li>
+        <li>Sikiric P, et al. Stable Gastric Pentadecapeptide BPC 157. <em>Curr Pharm Des.</em> 2011.</li>
+        <li>Chang CH, et al. The promoting effect of pentadecapeptide BPC 157 on tendon healing involves tendon outgrowth, cell survival, and cell migration. <em>J Appl Physiol.</em> 2011.</li>
+        <li>Cerovecki T, et al. Pentadecapeptide BPC 157 (PL 14736) improves ligament healing in the rat. <em>J Orthop Res.</em> 2010.</li>
+        <li>Sikiric P, et al. BPC 157 reversed amphetamine-induced behavior. <em>J Physiol Pharmacol.</em> 2002.</li>
+        <li>Vukojevic J, et al. Rat inferior esophageal sphincter, pyloric sphincter and urinary bladder. Nitric oxide-BPC 157 interactions. <em>Eur J Pharmacol.</em> 2018.</li>
+        <li>Sikiric P, et al. Gastric pentadecapeptide BPC 157 as unique cytoprotective peptide. <em>Pharmacol Res.</em> 2001.</li>
+        <li>Sikiric P, et al. Novel cytoprotective mediator, stable gastric pentadecapeptide BPC 157. <em>Curr Pharm Des.</em> 2018.</li>
+        <li>Sikiric P, et al. Pentadecapeptide BPC 157 interactions with adrenergic and dopaminergic systems. <em>Coll Antropol.</em> 2012.</li>
+        <li>Sikiric P, et al. Stability, safety and efficacy of pentadecapeptide BPC 157. <em>Curr Med Chem.</em> 2017.</li>
+        <li>Sikiric P, et al. Free of side effects BPC 157 peptide. <em>Curr Pharm Des.</em> 2018.</li>
+        <li>Gwyer D, et al. Gastric pentadecapeptide body protection compound BPC 157 and its role in accelerating musculoskeletal soft tissue healing. <em>Cell Tissue Res.</em> 2019.</li>
+      </ol>
+    </div>
+
+  </div>
+
+  <!-- POST NAV -->
+  <div class="post-nav">
+    <a href="index.html">← All Posts</a>
+    <a href="post-template.html">Next Post →</a>
+  </div>
+
+  <footer>
+    <span class="footer-logo">100XLONGEVITY</span>
+    <span class="footer-note">All content is for educational and informational purposes only.</span>
+  </footer>
+
+  <div class="corner-tag">@100xyanni</div>
+
+<script>
+  (function () {
+    const toggle = document.querySelector('.site-nav__toggle');
+    const overlay = document.querySelector('.site-nav__overlay');
+    if (!toggle || !overlay) return;
+    toggle.addEventListener('click', function () {
+      const isOpen = overlay.classList.toggle('is-open');
+      toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      toggle.textContent = isOpen ? 'Close' : 'Menu';
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+    overlay.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        overlay.classList.remove('is-open');
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.textContent = 'Menu';
+        document.body.style.overflow = '';
+      });
+    });
+  })();
+</script>
+</body>
+</html>

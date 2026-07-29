@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cold Exposure &amp; the Brain — 100X Longevity</title>
+  <link rel="stylesheet" href="../../assets/style.css" />
+</head>
+<body>
+
+  <nav class="site-nav">
+    <a href="../../index.html" class="site-nav__mark">100X Longevity</a>
+    <ul class="site-nav__links">
+      <li><a href="../../index.html">Home</a></li>
+      <li><a href="../../cognitive/index.html">Cognitive</a></li>
+      <li><a href="../../videos.html">Videos</a></li>
+      <li><a href="../../sources.html">Sources</a></li>
+      <li><a href="../../coaching.html">Coaching</a></li>
+      <li><a href="../../compounds/index.html">Compounds</a></li>
+    </ul>
+    <button class="site-nav__toggle" aria-label="Open menu" aria-expanded="false">Menu</button>
+    <div class="site-nav__overlay">
+      <a href="../../index.html">Home</a>
+      <a href="../../cognitive/index.html">Cognitive</a>
+      <a href="../../videos.html">Videos</a>
+      <a href="../../sources.html">Sources</a>
+      <a href="../../coaching.html">Coaching</a>
+      <a href="../../compounds/index.html">Compounds</a>
+    </div>
+  </nav>
+
+  <div class="lesson-wrap">
+    <div class="not-found" style="padding:6rem 2rem;text-align:center;">
+      <p style="font-size:.88rem;color:#bbb;">Lesson coming soon.</p>
+      <a href="../../cognitive/index.html" style="display:inline-block;margin-top:1.5rem;font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#bbb;">← Back to Cognitive Hub</a>
+    </div>
+  </div>
+
+  <footer>
+    <span class="footer-logo">100XLONGEVITY</span>
+    <span class="footer-note">All content is for educational and informational purposes only.</span>
+  </footer>
+
+<script>
+  (function () {
+    const toggle = document.querySelector('.site-nav__toggle');
+    const overlay = document.querySelector('.site-nav__overlay');
+    if (!toggle || !overlay) return;
+    toggle.addEventListener('click', function () {
+      const isOpen = overlay.classList.toggle('is-open');
+      toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      toggle.textContent = isOpen ? 'Close' : 'Menu';
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+    overlay.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        overlay.classList.remove('is-open');
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.textContent = 'Menu';
+        document.body.style.overflow = '';
+      });
+    });
+  })();
+</script>
+</body>
+</html>
