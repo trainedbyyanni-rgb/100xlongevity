@@ -61,12 +61,13 @@ Everything else in the cognitive hub is a roadmap card, not a real page.
 2. Video embeds. Only one confirmed-valid YouTube ID exists: g7FVEpNlcwI. Channel: https://www.youtube.com/@yannislongevity. Never guess or invent a video ID. Embeds will not load over file:// — test with `python3 -m http.server 8000`.
 3. Duplicated CSS. The same social strip / nav override / reset block is inlined in 10+ files instead of assets/style.css.
 4. No domain yet. Local only.
-5. Coaching CTA points to href="#" — needs a Tally form URL.
+5. Coaching CTA (8-week program apply button) points to href="#" — needs a Tally form URL.
+6. coaching.html's consultation questionnaire form uses `data-netlify="true"`, which only works if the site is actually deployed on Netlify — it's a no-op on any other host or when opened locally. On submit success or failure it redirects to https://calendly.com/trainedbyyanni/30min regardless.
 
 ## Rules
 - Never invent citations, PubMed IDs, study findings, or YouTube video IDs.
 - Never claim a link works just because the target file exists. Verify the content matches.
 - No stock photography, testimonials, or placeholder testimonials.
-- No pricing on the coaching page.
+- No pricing for the 8-week coaching program itself. Exception: the $50 / 30-minute single consultation offer on coaching.html does show its price — that's intentional, added when the page was rebuilt with the consultation questionnaire + Calendly flow.
 - Keep the medical disclaimer in the footer of every page.
 - Ask before creating new pages.

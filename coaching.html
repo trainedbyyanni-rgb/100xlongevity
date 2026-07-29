@@ -124,6 +124,7 @@
       border: 1px solid var(--text);
       transition: opacity 0.15s;
       text-decoration: none;
+      cursor: pointer;
     }
     .btn-p:hover { opacity: 0.8; }
     .cta-note {
@@ -133,6 +134,64 @@
       color: #bbb;
       line-height: 1.65;
     }
+
+    /* ── CONSULTATION OFFER ── */
+    .consult-price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 0.6rem;
+      margin-bottom: 1.4rem;
+    }
+    .consult-price {
+      font-family: 'DM Sans', sans-serif; font-weight: 300;
+      font-size: 2.4rem;
+      color: var(--text);
+      letter-spacing: 0.02em;
+    }
+    .consult-price-unit {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    /* ── QUESTIONNAIRE FORM ── */
+    .q-form {
+      max-width: 620px;
+      margin-top: 1.5rem;
+    }
+    .q-field {
+      margin-bottom: 1.4rem;
+    }
+    .q-field label {
+      display: block;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+    .q-field input,
+    .q-field select,
+    .q-field textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.88rem;
+      outline: none;
+    }
+    .q-field input:focus,
+    .q-field select:focus,
+    .q-field textarea:focus { border-color: var(--text); }
+    .q-field textarea { min-height: 90px; resize: vertical; }
+    .q-submit-status {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 0.8rem;
+      display: none;
+    }
+    .q-submit-status.is-visible { display: block; }
 
     @media (max-width: 760px) {
       .cover-grid { grid-template-columns: 1fr; }
@@ -235,15 +294,68 @@
   <div class="coaching-section">
     <h2>The Structure</h2>
     <p>Eight weeks. Five clients at a time, no exceptions. Paid in full at the start.</p>
-    <p>The cap is not a scarcity tactic. Coaching at this depth requires actual attention per person and I am running Menkor simultaneously. Five is what I can do properly.</p>
+    <p>The cap is not a scarcity tactic. Coaching at this depth requires actual attention per person and I am running other work simultaneously. Five is what I can do properly.</p>
     <p>Because of the cap, this runs on application rather than direct purchase. If it is not a fit for what you need I will tell you rather than take the money.</p>
   </div>
 
-  <!-- CTA -->
+  <!-- CTA (8-WEEK PROGRAM) -->
   <div class="cta-section">
     <!-- REPLACE WITH TALLY FORM URL -->
     <a href="#" class="btn-p">Apply for Coaching</a>
     <span class="cta-note">Applications reviewed within 48 hours. If it is a fit we will schedule a call before anything else happens.</span>
+  </div>
+
+  <!-- $50 CONSULTATION -->
+  <div class="coaching-section" id="consultation">
+    <h2>Single Consultation</h2>
+    <div class="consult-price-row">
+      <span class="consult-price">$50</span>
+      <span class="consult-price-unit">/ 30 minute call</span>
+    </div>
+    <p>Not ready for eight weeks of full coaching, or just have something specific to work through, a training plateau, a protocol question, whether a change is worth making before you make it. This is a single, direct call to work through it.</p>
+    <p>Fill out the short form below first, so the call starts with context instead of catching up. Once submitted, you will be taken straight to the booking calendar to pick a time.</p>
+
+    <form name="consultation-questionnaire" method="POST" data-netlify="true" class="q-form" id="consult-form">
+      <input type="hidden" name="form-name" value="consultation-questionnaire" />
+
+      <div class="q-field">
+        <label for="q-name">Name</label>
+        <input type="text" id="q-name" name="name" required />
+      </div>
+
+      <div class="q-field">
+        <label for="q-email">Email</label>
+        <input type="email" id="q-email" name="email" required />
+      </div>
+
+      <div class="q-field">
+        <label for="q-goal">What do you want to get out of this call?</label>
+        <textarea id="q-goal" name="goal" required></textarea>
+      </div>
+
+      <div class="q-field">
+        <label for="q-experience">Training experience</label>
+        <select id="q-experience" name="experience" required>
+          <option value="">Select one</option>
+          <option value="beginner">Beginner (under 1 year)</option>
+          <option value="intermediate">Intermediate (1 to 3 years)</option>
+          <option value="advanced">Advanced (3+ years)</option>
+        </select>
+      </div>
+
+      <div class="q-field">
+        <label for="q-current">Anything you're currently running (compounds, supplements, prescriptions) that's relevant to this call?</label>
+        <textarea id="q-current" name="current_protocol"></textarea>
+      </div>
+
+      <div class="q-field">
+        <label for="q-notes">Anything else worth knowing before the call?</label>
+        <textarea id="q-notes" name="notes"></textarea>
+      </div>
+
+      <button type="submit" class="btn-p">Continue To Book →</button>
+      <span class="q-submit-status" id="q-status"></span>
+    </form>
   </div>
 
   <footer>
@@ -269,6 +381,40 @@
         toggle.textContent = 'Menu';
         document.body.style.overflow = '';
       });
+    });
+  })();
+</script>
+
+<script>
+  (function () {
+    const CALENDLY_URL = 'https://calendly.com/trainedbyyanni/30min';
+    const form = document.getElementById('consult-form');
+    const status = document.getElementById('q-status');
+    if (!form) return;
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      status.textContent = 'Submitting...';
+      status.classList.add('is-visible');
+
+      const data = new FormData(form);
+
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(data).toString()
+      })
+        .then(function () {
+          status.textContent = 'Got it, redirecting you to the booking calendar...';
+          window.location.href = CALENDLY_URL;
+        })
+        .catch(function () {
+          // Even if the form submission fails, don't strand the person,
+          // still send them to book the call.
+          status.textContent = 'Redirecting you to the booking calendar...';
+          window.location.href = CALENDLY_URL;
+        });
     });
   })();
 </script>
