@@ -63,6 +63,7 @@ Everything else in the cognitive hub is a roadmap card, not a real page.
 4. No domain yet. Local only.
 5. Coaching CTA (8-week program apply button) points to href="#" — needs a Tally form URL.
 6. coaching.html's consultation questionnaire form uses `data-netlify="true"`, which only works if the site is actually deployed on Netlify — it's a no-op on any other host or when opened locally. On submit success or failure it redirects to https://calendly.com/trainedbyyanni/30min regardless.
+7. Form submissions are NOT yet forwarded to trainedbyyanni@gmail.com. There is no HTML/code-level way to set a Netlify Forms notification destination — it must be configured in the Netlify dashboard once the site is deployed there: Site settings → Forms → Form notifications → Add notification → Email notification → enter trainedbyyanni@gmail.com. This is a one-time manual setup step, not something a future coding session can do by editing files.
 
 ## Rules
 - Never invent citations, PubMed IDs, study findings, or YouTube video IDs.

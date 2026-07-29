@@ -302,8 +302,8 @@
 
   <!-- CTA (8-WEEK PROGRAM) -->
   <div class="cta-section">
-    <a href="https://calendly.com/trainedbyyanni/30min" class="btn-p" target="_blank">Apply for Coaching</a>
-    <span class="cta-note">Applications reviewed within 48 hours. If it is a fit we will schedule a call before anything else happens.</span>
+    <a href="https://calendly.com/trainedbyyanni/30min" class="btn-p" target="_blank">Book A Call</a>
+    <span class="cta-note">Please fill out the questionnaire below first, so the call starts with context instead of catching up.</span>
   </div>
 
   <!-- $50 CONSULTATION -->
@@ -318,6 +318,15 @@
 
     <form name="consultation-questionnaire" method="POST" data-netlify="true" class="q-form" id="consult-form">
       <input type="hidden" name="form-name" value="consultation-questionnaire" />
+
+      <div class="q-field">
+        <label for="q-interest">What are you interested in?</label>
+        <select id="q-interest" name="interest" required>
+          <option value="">Select one</option>
+          <option value="consultation">Single Consultation ($50 / 30 min)</option>
+          <option value="coaching">8-Week Coaching Program</option>
+        </select>
+      </div>
 
       <div class="q-field">
         <label for="q-name">Name</label>
