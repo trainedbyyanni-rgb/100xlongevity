@@ -212,6 +212,8 @@ nav {
 
   .site-nav__toggle {
     display: block;
+    position: relative;
+    z-index: 201;
     pointer-events: auto;
     background: none;
     border: none;
@@ -234,6 +236,7 @@ nav {
     gap: var(--space-4);
     transform: translateY(-100%);
     transition: transform 0.25s ease;
+    pointer-events: auto;
   }
 
   .site-nav__overlay.is-open { transform: translateY(0); }
