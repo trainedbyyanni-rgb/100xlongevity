@@ -74,12 +74,13 @@
       <li class="has-dropdown">
         <a href="index.html">100X University</a>
         <div class="site-nav__dropdown">
-          <a href="#recovery">Recovery</a>
-          <a href="#neurotransmitters">Neurotransmitters</a>
-          <a href="#growth-factors">Growth Factors</a>
-          <a href="#longevity-endocrinology">Longevity &amp; Endocrinology</a>
-          <a href="#pharmacology">Pharmacology</a>
-          <a href="#lifestyle-inputs">Lifestyle Inputs</a>
+          <a href="start-here.html">Start Here</a>
+          <a href="#recovery" data-genre="recovery">Recovery</a>
+          <a href="#neurotransmitters" data-genre="neurotransmitters">Neurotransmitters</a>
+          <a href="#growth-factors" data-genre="growth-factors">Growth Factors</a>
+          <a href="#longevity-endocrinology" data-genre="longevity-endocrinology">Longevity &amp; Endocrinology</a>
+          <a href="#pharmacology" data-genre="pharmacology">Pharmacology</a>
+          <a href="#lifestyle-inputs" data-genre="lifestyle-inputs">Lifestyle Inputs</a>
         </div>
       </li>
       <li><a href="../videos.html">Videos</a></li>
@@ -93,12 +94,13 @@
       <div class="site-nav__overlay-group">
         <a href="index.html">100X University</a>
         <div class="site-nav__dropdown">
-          <a href="#recovery">Recovery</a>
-          <a href="#neurotransmitters">Neurotransmitters</a>
-          <a href="#growth-factors">Growth Factors</a>
-          <a href="#longevity-endocrinology">Longevity &amp; Endocrinology</a>
-          <a href="#pharmacology">Pharmacology</a>
-          <a href="#lifestyle-inputs">Lifestyle Inputs</a>
+          <a href="start-here.html">Start Here</a>
+          <a href="#recovery" data-genre="recovery">Recovery</a>
+          <a href="#neurotransmitters" data-genre="neurotransmitters">Neurotransmitters</a>
+          <a href="#growth-factors" data-genre="growth-factors">Growth Factors</a>
+          <a href="#longevity-endocrinology" data-genre="longevity-endocrinology">Longevity &amp; Endocrinology</a>
+          <a href="#pharmacology" data-genre="pharmacology">Pharmacology</a>
+          <a href="#lifestyle-inputs" data-genre="lifestyle-inputs">Lifestyle Inputs</a>
         </div>
       </div>
       <a href="../videos.html">Videos</a>
@@ -114,8 +116,12 @@
     <p>Every lesson organized by genre. Mechanism first, every claim cited, nothing invented. New to this? Start with the Start Here foundations page before anything else.</p>
   </div>
 
+  <div id="genre-back-wrap" style="display:none; max-width:1200px; margin:0 auto; padding:1.5rem var(--nav-inset,2rem) 0;">
+    <a href="index.html" id="genre-back-link" style="font-size:0.78rem; letter-spacing:0.08em; text-transform:uppercase; color:#999; text-decoration:none; border-bottom:1px solid #ececec; padding-bottom:2px;">&larr; View All Genres</a>
+  </div>
+
   <!-- ── RECOVERY ── -->
-  <section class="genre-section" id="recovery">
+  <section class="genre-section" id="recovery" data-genre="recovery">
     <div class="genre-header">
       <h2>Recovery</h2>
       <span>Sleep, waste clearance, and system restoration</span>
@@ -137,7 +143,7 @@
   </section>
 
   <!-- ── NEUROTRANSMITTERS ── -->
-  <section class="genre-section" id="neurotransmitters">
+  <section class="genre-section" id="neurotransmitters" data-genre="neurotransmitters">
     <div class="genre-header">
       <h2>Neurotransmitters</h2>
       <span>The signaling molecules behind every cognitive function</span>
@@ -171,7 +177,7 @@
   </section>
 
   <!-- ── GROWTH FACTORS ── -->
-  <section class="genre-section" id="growth-factors">
+  <section class="genre-section" id="growth-factors" data-genre="growth-factors">
     <div class="genre-header">
       <h2>Growth Factors</h2>
       <span>The proteins that drive neuroplasticity</span>
@@ -193,7 +199,7 @@
   </section>
 
   <!-- ── LONGEVITY & ENDOCRINOLOGY ── -->
-  <section class="genre-section" id="longevity-endocrinology">
+  <section class="genre-section" id="longevity-endocrinology" data-genre="longevity-endocrinology">
     <div class="genre-header">
       <h2>Longevity &amp; Endocrinology</h2>
       <span>Aging, hormones, and the tradeoffs underneath both</span>
@@ -223,7 +229,7 @@
   </section>
 
   <!-- ── PHARMACOLOGY ── -->
-  <section class="genre-section" id="pharmacology">
+  <section class="genre-section" id="pharmacology" data-genre="pharmacology">
     <div class="genre-header">
       <h2>Pharmacology</h2>
       <span>How drugs interact with the brain's systems</span>
@@ -249,7 +255,7 @@
   </section>
 
   <!-- ── LIFESTYLE INPUTS ── -->
-  <section class="genre-section" id="lifestyle-inputs">
+  <section class="genre-section" id="lifestyle-inputs" data-genre="lifestyle-inputs">
     <div class="genre-header">
       <h2>Lifestyle Inputs</h2>
       <span>What you do every day shapes your neurobiology</span>
@@ -276,6 +282,49 @@
   </footer>
 
   <div class="corner-tag">@100xyanni</div>
+
+<script>
+  (function () {
+    const sections = document.querySelectorAll('.genre-section');
+    const backWrap = document.getElementById('genre-back-wrap');
+    const hero = document.querySelector('.page-hero');
+
+    function applyIsolation() {
+      const hash = window.location.hash.replace('#', '');
+      const validGenres = ['recovery', 'neurotransmitters', 'growth-factors', 'longevity-endocrinology', 'pharmacology', 'lifestyle-inputs'];
+
+      if (hash && validGenres.includes(hash)) {
+        sections.forEach(function (s) {
+          s.style.display = (s.getAttribute('data-genre') === hash) ? '' : 'none';
+        });
+        if (backWrap) backWrap.style.display = 'block';
+        if (hero) hero.style.display = 'none';
+      } else {
+        sections.forEach(function (s) { s.style.display = ''; });
+        if (backWrap) backWrap.style.display = 'none';
+        if (hero) hero.style.display = '';
+      }
+    }
+
+    // Run on initial load
+    applyIsolation();
+
+    // Run whenever the hash changes, including clicking a dropdown
+    // link while already on this page (hashchange doesn't reload)
+    window.addEventListener('hashchange', applyIsolation);
+
+    // "View All Genres" link clears the hash explicitly
+    const backLink = document.getElementById('genre-back-link');
+    if (backLink) {
+      backLink.addEventListener('click', function (e) {
+        e.preventDefault();
+        history.pushState('', document.title, window.location.pathname);
+        applyIsolation();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+  })();
+</script>
 
 <script>
   (function () {
