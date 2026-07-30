@@ -12,7 +12,17 @@
     <a href="../index.html" class="site-nav__mark">100X Longevity</a>
     <ul class="site-nav__links">
       <li><a href="../index.html">Home</a></li>
-      <li><a href="../cognitive/index.html">Cognitive</a></li>
+      <li class="has-dropdown">
+        <a href="../cognitive/index.html">100X University</a>
+        <div class="site-nav__dropdown">
+          <a href="../cognitive/index.html#recovery">Recovery</a>
+          <a href="../cognitive/index.html#neurotransmitters">Neurotransmitters</a>
+          <a href="../cognitive/index.html#growth-factors">Growth Factors</a>
+          <a href="../cognitive/index.html#longevity-endocrinology">Longevity &amp; Endocrinology</a>
+          <a href="../cognitive/index.html#pharmacology">Pharmacology</a>
+          <a href="../cognitive/index.html#lifestyle-inputs">Lifestyle Inputs</a>
+        </div>
+      </li>
       <li><a href="../videos.html">Videos</a></li>
       <li><a href="../sources.html">Sources</a></li>
       <li><a href="../coaching.html">Coaching</a></li>
@@ -21,7 +31,17 @@
     <button class="site-nav__toggle" aria-label="Open menu" aria-expanded="false">Menu</button>
     <div class="site-nav__overlay">
       <a href="../index.html">Home</a>
-      <a href="../cognitive/index.html">Cognitive</a>
+      <div class="site-nav__overlay-group">
+        <a href="../cognitive/index.html">100X University</a>
+        <div class="site-nav__dropdown">
+          <a href="../cognitive/index.html#recovery">Recovery</a>
+          <a href="../cognitive/index.html#neurotransmitters">Neurotransmitters</a>
+          <a href="../cognitive/index.html#growth-factors">Growth Factors</a>
+          <a href="../cognitive/index.html#longevity-endocrinology">Longevity &amp; Endocrinology</a>
+          <a href="../cognitive/index.html#pharmacology">Pharmacology</a>
+          <a href="../cognitive/index.html#lifestyle-inputs">Lifestyle Inputs</a>
+        </div>
+      </div>
       <a href="../videos.html">Videos</a>
       <a href="../sources.html">Sources</a>
       <a href="../coaching.html">Coaching</a>
@@ -189,6 +209,28 @@
         toggle.textContent = 'Menu';
         document.body.style.overflow = '';
       });
+    });
+
+    // Mobile/tap support for the dropdown, since hover doesn't apply
+    // on touch devices — tapping the parent link toggles the dropdown
+    // instead of navigating immediately, second tap or tapping a
+    // dropdown item navigates.
+    document.querySelectorAll('.has-dropdown > a').forEach(function (link) {
+      link.addEventListener('click', function (e) {
+        if (window.innerWidth <= 640) return; // in mobile overlay, dropdown is always visible
+        const parent = link.closest('.has-dropdown');
+        const alreadyOpen = parent.classList.contains('is-open');
+        if (!alreadyOpen) {
+          e.preventDefault();
+          document.querySelectorAll('.has-dropdown').forEach(function (li) { li.classList.remove('is-open'); });
+          parent.classList.add('is-open');
+        }
+      });
+    });
+    document.addEventListener('click', function (e) {
+      if (!e.target.closest('.has-dropdown')) {
+        document.querySelectorAll('.has-dropdown').forEach(function (li) { li.classList.remove('is-open'); });
+      }
     });
   })();
 </script>

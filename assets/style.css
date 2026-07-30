@@ -777,3 +777,68 @@ sup.citation-marker a {
 .cog-category-header { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 1.2rem; padding-bottom: 0.6rem; border-bottom: 1px solid var(--border); }
 .cog-category-header h2 { font-family: var(--font-display); font-size: 1.2rem; letter-spacing: 0.1em; color: var(--text); font-weight: 300; }
 .cog-category-header span { font-size: 0.66rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+
+/* ==========================================================================
+   100X UNIVERSITY DROPDOWN NAV
+   ========================================================================== */
+
+.site-nav__links li.has-dropdown {
+  position: relative;
+}
+
+.site-nav__dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 0.6rem;
+  background: #fff;
+  border: 1px solid #ececec;
+  min-width: 240px;
+  display: none;
+  flex-direction: column;
+  padding: 0.4rem 0;
+  z-index: 150;
+}
+
+.site-nav__links li.has-dropdown:hover .site-nav__dropdown,
+.site-nav__links li.has-dropdown.is-open .site-nav__dropdown {
+  display: flex;
+}
+
+.site-nav__dropdown a {
+  padding: 11px 20px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #666;
+  text-decoration: none;
+  white-space: nowrap;
+  border-bottom: 1px solid #f5f5f5;
+  transition: color 0.15s, background 0.15s;
+}
+
+.site-nav__dropdown a:last-child { border-bottom: none; }
+
+.site-nav__dropdown a:hover {
+  color: #111;
+  background: #fafafa;
+}
+
+/* Mobile: dropdown becomes a static expanded list inside the overlay,
+   no hover behavior on touch devices */
+@media (max-width: 640px) {
+  .site-nav__dropdown {
+    position: static;
+    display: flex !important;
+    border: none;
+    margin-top: 0.6rem;
+    padding-left: 1rem;
+  }
+  .site-nav__dropdown a {
+    font-size: 0.85rem;
+    padding: 8px 0;
+    border-bottom: none;
+    color: #999;
+  }
+}

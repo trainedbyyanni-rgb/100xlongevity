@@ -3,38 +3,65 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cognitive — 100X Longevity</title>
+  <title>100X University — 100X Longevity</title>
   <link rel="stylesheet" href="../assets/style.css" />
   <style>
-    /* ── FEATURED TAG ── */
-    .featured-tag {
-      display: inline-block;
-      font-size: 0.6rem;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: #fff;
-      background: #111;
-      padding: 2px 8px;
-      margin-bottom: 0.6rem;
+    .genre-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 3rem var(--nav-inset, 2rem) 2rem;
+      scroll-margin-top: 6rem;
     }
-
-    /* ── COMING SOON STATE ── */
-    .lesson-card.coming-soon {
-      opacity: 0.42;
-      cursor: default;
-      pointer-events: none;
+    .genre-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      border-bottom: 1px solid #ececec;
+      padding-bottom: 0.8rem;
+      margin-bottom: 1.6rem;
     }
-    .coming-soon-label {
-      font-size: 0.6rem;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: #bbb;
-      border: 1px solid #e0e0e0;
-      padding: 2px 7px;
-      display: inline-block;
-      align-self: flex-start;
+    .genre-header h2 {
+      font-family: 'DM Sans', sans-serif; font-weight: 300;
+      font-size: 1.4rem;
+      letter-spacing: 0.04em;
+      color: #111;
+    }
+    .genre-header span {
+      font-size: 0.78rem;
+      color: #999;
+    }
+    .genre-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: #ececec;
+    }
+    .genre-item {
+      background: #fff;
+      padding: 1.4rem 1.6rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+    .genre-item:hover { background: #fafafa; }
+    .genre-item .g-name {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1rem;
+      color: #111;
+    }
+    .genre-item .g-desc {
+      font-size: 0.78rem;
+      color: #999;
+      line-height: 1.55;
+    }
+    @media (max-width: 900px) {
+      .genre-list { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 640px) {
+      .genre-list { grid-template-columns: 1fr; }
+      .genre-section { padding: 2.5rem 1.2rem 1.5rem; }
     }
   </style>
 </head>
@@ -44,7 +71,17 @@
     <a href="../index.html" class="site-nav__mark">100X Longevity</a>
     <ul class="site-nav__links">
       <li><a href="../index.html">Home</a></li>
-      <li><a href="../cognitive/index.html">Cognitive</a></li>
+      <li class="has-dropdown">
+        <a href="index.html">100X University</a>
+        <div class="site-nav__dropdown">
+          <a href="#recovery">Recovery</a>
+          <a href="#neurotransmitters">Neurotransmitters</a>
+          <a href="#growth-factors">Growth Factors</a>
+          <a href="#longevity-endocrinology">Longevity &amp; Endocrinology</a>
+          <a href="#pharmacology">Pharmacology</a>
+          <a href="#lifestyle-inputs">Lifestyle Inputs</a>
+        </div>
+      </li>
       <li><a href="../videos.html">Videos</a></li>
       <li><a href="../sources.html">Sources</a></li>
       <li><a href="../coaching.html">Coaching</a></li>
@@ -53,7 +90,17 @@
     <button class="site-nav__toggle" aria-label="Open menu" aria-expanded="false">Menu</button>
     <div class="site-nav__overlay">
       <a href="../index.html">Home</a>
-      <a href="../cognitive/index.html">Cognitive</a>
+      <div class="site-nav__overlay-group">
+        <a href="index.html">100X University</a>
+        <div class="site-nav__dropdown">
+          <a href="#recovery">Recovery</a>
+          <a href="#neurotransmitters">Neurotransmitters</a>
+          <a href="#growth-factors">Growth Factors</a>
+          <a href="#longevity-endocrinology">Longevity &amp; Endocrinology</a>
+          <a href="#pharmacology">Pharmacology</a>
+          <a href="#lifestyle-inputs">Lifestyle Inputs</a>
+        </div>
+      </div>
       <a href="../videos.html">Videos</a>
       <a href="../sources.html">Sources</a>
       <a href="../coaching.html">Coaching</a>
@@ -62,304 +109,165 @@
   </nav>
 
   <div class="page-hero">
-    <p class="section-label">Cognitive Science</p>
-    <h1>How the Brain<br>Actually Works</h1>
-    <p>Lessons on neurotransmitters, growth factors, pharmacology, and the lifestyle inputs that drive cognitive performance — built to go deeper than anything on the feed.</p>
+    <p class="section-label">100X University</p>
+    <h1>How The Brain,<br>Body &amp; Hormones<br>Actually Work</h1>
+    <p>Every lesson organized by genre. Mechanism first, every claim cited, nothing invented. New to this? Start with the Start Here foundations page before anything else.</p>
   </div>
 
-  <div class="cog-wrap">
-
-    <!-- ── START HERE ── -->
-    <div class="cog-category">
-      <div class="lesson-grid">
-        <a href="start-here.html" class="lesson-card featured">
-          <div>
-            <span class="featured-tag">New? Start Here</span>
-            <div class="l-type">Foundation</div>
-            <div class="l-name">Start Here — Vocabulary &amp; Reading Skills</div>
-            <div class="l-aka">What every lesson in this hub assumes you already know</div>
-          </div>
-          <div>
-            <p>What a receptor is, what upregulation means, how to tell an animal study from a human one, and where to actually find the papers. Read this once and every other lesson in the hub becomes easier to follow.</p>
-            <span class="l-link">Read Foundation →</span>
-          </div>
-        </a>
+  <!-- ── RECOVERY ── -->
+  <section class="genre-section" id="recovery">
+    <div class="genre-header">
+      <h2>Recovery</h2>
+      <span>Sleep, waste clearance, and system restoration</span>
+    </div>
+    <div class="genre-list">
+      <a href="lifestyle/sleep-cognitive-function.html" class="genre-item">
+        <span class="g-name">Sleep &amp; Cognitive Function</span>
+        <span class="g-desc">Glymphatic clearance, memory consolidation, REM emotional regulation, and what cutting sleep actually costs.</span>
+      </a>
+      <a href="d2-receptor-recovery.html" class="genre-item">
+        <span class="g-name">D2 Receptor Recovery</span>
+        <span class="g-desc">Getting the dopamine system back after chronic stimulant use, mechanism by mechanism.</span>
+      </a>
+      <div class="genre-item" style="opacity:0.4; pointer-events:none;">
+        <span class="g-name">Cold Exposure &amp; The Brain</span>
+        <span class="g-desc">Coming soon.</span>
       </div>
     </div>
+  </section>
 
-    <!-- ── GROWTH FACTORS ── -->
-    <div class="cog-category">
-      <div class="cog-category-header">
-        <h2>Growth Factors &amp; Neurotrophins</h2>
-        <span>The proteins that drive neuroplasticity</span>
-      </div>
-
-      <div class="lesson-grid">
-
-        <a href="bdnf.html" class="lesson-card featured">
-          <div>
-            <span class="featured-tag">Start Here</span>
-            <div class="l-type">Neurotrophin</div>
-            <div class="l-name">BDNF — Brain-Derived Neurotrophic Factor</div>
-            <div class="l-aka">The "Miracle-Gro" of the brain</div>
-          </div>
-          <div>
-            <p>The most studied neurotrophin in cognitive performance research. BDNF drives neurogenesis, synaptic plasticity, and long-term potentiation — the cellular mechanism behind learning and memory. This lesson covers what it is, what downregulates it, and every evidence-backed lifestyle and pharmacological input that raises it.</p>
-            <span class="l-link">Read Full Lesson →</span>
-          </div>
-        </a>
-
-        <a href="ngf.html" class="lesson-card">
-          <div class="l-type">Neurotrophin</div>
-          <div class="l-name">NGF — Nerve Growth Factor</div>
-          <div class="l-aka">Discovered by Rita Levi-Montalcini, 1956</div>
-          <p>The original neurotrophin. Supports survival and differentiation of neurons, particularly in the cholinergic system. Key target for Lion's Mane research.</p>
-          <span class="l-link">Read Lesson →</span>
-        </a>
-
-        <a href="igf-1.html" class="lesson-card">
-          <div class="l-type">Cytokine / Growth Factor</div>
-          <div class="l-name">IGF-1 — Insulin-Like Growth Factor</div>
-          <div class="l-aka">Mediates many of GH's CNS effects</div>
-          <p>Crosses the blood-brain barrier and promotes neurogenesis in the hippocampus. Exercise and GH secretagogues are the primary upregulators covered here.</p>
-          <span class="l-link">Read Lesson →</span>
-        </a>
-
-      </div>
+  <!-- ── NEUROTRANSMITTERS ── -->
+  <section class="genre-section" id="neurotransmitters">
+    <div class="genre-header">
+      <h2>Neurotransmitters</h2>
+      <span>The signaling molecules behind every cognitive function</span>
     </div>
-
-    <!-- ── LONGEVITY & ENDOCRINOLOGY ── -->
-    <div class="cog-category">
-      <div class="cog-category-header">
-        <h2>Longevity &amp; Endocrinology</h2>
-        <span>Why the body ages, and how hormones actually shape brain chemistry</span>
-      </div>
-
-      <div class="lesson-grid">
-
-        <a href="longevity-soma-theory.html" class="lesson-card">
-          <div class="l-type">Evolutionary Theory</div>
-          <div class="l-name">Longevity &amp; The Disposable Soma Theory</div>
-          <div class="l-aka">Why organisms age at all</div>
-          <p>The evolutionary tradeoff between growth, reproduction, and cellular repair — and why the body was never selected to maintain itself indefinitely.</p>
-          <span class="l-link">Read Lesson →</span>
-        </a>
-
-        <a href="testosterone-neurochemistry.html" class="lesson-card">
-          <div class="l-type">Steroid Hormone</div>
-          <div class="l-name">Testosterone, DHT &amp; Estrogen</div>
-          <div class="l-aka">Three hormones, three receptor systems</div>
-          <p>Testosterone's effect on mood runs through its conversion to estrogen, not direct androgen receptor activation. How aromatase and 5-alpha-reductase route the same hormone to very different brain effects.</p>
-          <span class="l-link">Read Lesson →</span>
-        </a>
-
-        <a href="cortisol.html" class="lesson-card">
-          <div class="l-type">Glucocorticoid Hormone</div>
-          <div class="l-name">Cortisol</div>
-          <div class="l-aka">The most misunderstood hormone in wellness</div>
-          <p>The HPA axis mechanism, why dysregulation runs in both directions (not just "too high"), the epigenetic mark early life stress leaves on the glucocorticoid receptor gene, and what ashwagandha's RCT base actually shows.</p>
-          <span class="l-link">Read Lesson →</span>
-        </a>
-
-        <a href="hair-loss-dht.html" class="lesson-card">
-          <div class="l-type">Androgen Pharmacology</div>
-          <div class="l-name">Hair Loss &amp; DHT</div>
-          <div class="l-aka">Androgenetic alopecia, mechanistically</div>
-          <p>The DHT-androgen receptor mechanism behind male pattern baldness, and an honest comparison of systemic 5-alpha-reductase inhibitors against topical, receptor-blocking alternatives.</p>
-          <span class="l-link">Read Lesson →</span>
-        </a>
-
-        <a href="non-negotiables-pde5.html" class="lesson-card">
-          <div class="l-type">Non-Negotiable</div>
-          <div class="l-name">PDE5 Inhibition</div>
-          <div class="l-aka">The cGMP mechanism, beyond its original indication</div>
-          <p>Dementia risk, nutrient partitioning, and hippocampal BDNF upregulation — what's genuinely established about PDE5 inhibitors' reach past erectile dysfunction, and where the evidence still conflicts.</p>
-          <span class="l-link">Read Lesson →</span>
-        </a>
-
-      </div>
+    <div class="genre-list">
+      <a href="dopamine.html" class="genre-item">
+        <span class="g-name">Dopamine</span>
+        <span class="g-desc">The inverted-U relationship between prefrontal dopamine and working memory.</span>
+      </a>
+      <a href="norepinephrine.html" class="genre-item">
+        <span class="g-name">Norepinephrine</span>
+        <span class="g-desc">The alpha-2A vs alpha-1 receptor split, and why stress hijacks focus.</span>
+      </a>
+      <a href="acetylcholine.html" class="genre-item">
+        <span class="g-name">Acetylcholine</span>
+        <span class="g-desc">Attention, memory, REM sleep, and the real racetam evidence.</span>
+      </a>
+      <a href="gaba.html" class="genre-item">
+        <span class="g-name">GABA</span>
+        <span class="g-desc">Inhibitory tone, benzodiazepine tolerance, and the blood-brain-barrier question.</span>
+      </a>
+      <a href="ssri.html" class="genre-item">
+        <span class="g-name">Serotonin / SSRIs</span>
+        <span class="g-desc">5-HT receptor subtypes and how SSRIs actually work.</span>
+      </a>
+      <a href="wakefulness.html" class="genre-item">
+        <span class="g-name">Orexin / Wakefulness</span>
+        <span class="g-desc">The lateral hypothalamic system behind modafinil and narcolepsy.</span>
+      </a>
     </div>
+  </section>
 
-    <!-- ── NEUROTRANSMITTERS ── -->
-    <div class="cog-category">
-      <div class="cog-category-header">
-        <h2>Neurotransmitter Systems</h2>
-        <span>The signaling molecules behind every cognitive function</span>
-      </div>
-
-      <div class="lesson-grid">
-
-        <!-- Serotonin → ssri.html covers serotonin mechanism throughout -->
-        <a href="ssri.html" class="lesson-card">
-          <div class="l-type">Monoamine</div>
-          <div class="l-name">Serotonin</div>
-          <div class="l-aka">5-Hydroxytryptamine (5-HT)</div>
-          <p>Not just a "happy chemical" — serotonin modulates mood, learning, memory consolidation, and appetite. This lesson covers the 5-HT receptor subtypes and what they actually do.</p>
-          <span class="l-link">Read Lesson →</span>
-        </a>
-
-        <a href="dopamine.html" class="lesson-card">
-          <div class="l-type">Monoamine</div>
-          <div class="l-name">Dopamine</div>
-          <div class="l-aka">The motivation and reward signal</div>
-          <p>Drives executive function, working memory, and motivation through mesocortical and mesolimbic pathways. How pharmacology manipulates this system — and at what cost.</p>
-          <span class="l-link">Read Lesson →</span>
-        </a>
-
-        <a href="d2-receptor-recovery.html" class="lesson-card">
-          <div class="l-type">Receptor Pharmacology</div>
-          <div class="l-name">D2 Receptor Recovery</div>
-          <div class="l-aka">Getting the dopamine system back after chronic stimulant use</div>
-          <p>Downregulation is not permanent damage. What the evidence actually supports for recovery, mechanism by mechanism, from receptor resynthesis to glutamate homeostasis to sleep and exercise.</p>
-          <span class="l-link">Read Lesson →</span>
-        </a>
-
-        <!-- No Norepinephrine lesson page yet -->
-        <a href="norepinephrine.html" class="lesson-card">
-          <div class="l-type">Monoamine</div>
-          <div class="l-name">Norepinephrine</div>
-          <div class="l-aka">Noradrenaline — the alertness signal</div>
-          <p>Mediates arousal, attention, and the fight-or-flight response. Key target for stimulants and the locus coeruleus-norepinephrine system's role in cognition.</p>
-          <span class="l-link">Read Lesson →</span>
-        </a>
-
-        <!-- Orexin → wakefulness.html covers the orexin system in depth -->
-        <a href="wakefulness.html" class="lesson-card">
-          <div class="l-type">Neuropeptide</div>
-          <div class="l-name">Orexin / Hypocretin</div>
-          <div class="l-aka">The wakefulness peptide</div>
-          <p>Orexin neurons in the lateral hypothalamus maintain wakefulness and arousal. Loss of orexin neurons causes narcolepsy. Key to understanding how modafinil and wakefulness agents work.</p>
-          <span class="l-link">Read Lesson →</span>
-        </a>
-
-        <!-- No Acetylcholine lesson page yet -->
-        <a href="acetylcholine.html" class="lesson-card">
-          <div class="l-type">Neurotransmitter</div>
-          <div class="l-name">Acetylcholine</div>
-          <div class="l-aka">The learning neurotransmitter</div>
-          <p>Critical for memory encoding, attention, and REM sleep. The cholinergic system is a primary target in cognitive enhancement — from racetams to choline supplementation.</p>
-          <span class="l-link">Read Lesson →</span>
-        </a>
-
-        <a href="gaba.html" class="lesson-card">
-          <div class="l-type">Inhibitory NT</div>
-          <div class="l-name">GABA</div>
-          <div class="l-aka">γ-Aminobutyric acid</div>
-          <p>The brain's primary inhibitory neurotransmitter. How GABAergic tone affects anxiety, sleep, and the paradoxical role of GABA in cognitive performance.</p>
-          <span class="l-link">Read Lesson →</span>
-        </a>
-
-      </div>
+  <!-- ── GROWTH FACTORS ── -->
+  <section class="genre-section" id="growth-factors">
+    <div class="genre-header">
+      <h2>Growth Factors</h2>
+      <span>The proteins that drive neuroplasticity</span>
     </div>
-
-    <!-- ── PHARMACOLOGY ── -->
-    <div class="cog-category">
-      <div class="cog-category-header">
-        <h2>Pharmacology</h2>
-        <span>How drugs interact with the brain's systems</span>
-      </div>
-
-      <div class="lesson-grid">
-
-        <a href="ssri.html" class="lesson-card">
-          <div class="l-type">Antidepressant Class</div>
-          <div class="l-name">SSRIs — Selective Serotonin Reuptake Inhibitors</div>
-          <div class="l-aka">Prozac, Zoloft, Lexapro, Paxil, Celexa</div>
-          <p>How they work, what they actually do to serotonin signaling, the 2–4 week delay, cognitive side effects, BDNF upregulation over time, and why the "chemical imbalance" theory is more complicated than it's sold.</p>
-          <span class="l-link">Read Lesson →</span>
-        </a>
-
-        <a href="ssri.html" class="lesson-card">
-          <div class="l-type">Antidepressant Class</div>
-          <div class="l-name">SNRIs — Serotonin-Norepinephrine Reuptake Inhibitors</div>
-          <div class="l-aka">Effexor, Cymbalta, Pristiq</div>
-          <p>Dual reuptake inhibition — how targeting norepinephrine alongside serotonin changes the pharmacological and cognitive profile compared to SSRIs.</p>
-          <span class="l-link">Read Lesson →</span>
-        </a>
-
-        <a href="amphetamines.html" class="lesson-card">
-          <div class="l-type">Stimulant Class</div>
-          <div class="l-name">Amphetamines</div>
-          <div class="l-aka">Adderall, Vyvanse, Dexedrine</div>
-          <p>Mechanism of action: vesicular monoamine transport, reverse transport, MAO inhibition. Cognitive effects, executive function research, dopamine downregulation, and the tolerance question.</p>
-          <span class="l-link">Read Lesson →</span>
-        </a>
-
-        <a href="amphetamines.html" class="lesson-card">
-          <div class="l-type">Stimulant</div>
-          <div class="l-name">Methylphenidate</div>
-          <div class="l-aka">Ritalin, Concerta, Focalin</div>
-          <p>Dopamine and norepinephrine reuptake inhibitor — mechanistically distinct from amphetamines. How the difference in mechanism produces a different cognitive and side effect profile.</p>
-          <span class="l-link">Read Lesson →</span>
-        </a>
-
-        <a href="wakefulness.html" class="lesson-card">
-          <div class="l-type">Wakefulness Agent</div>
-          <div class="l-name">Modafinil</div>
-          <div class="l-aka">Provigil — and its R-enantiomer, Armodafinil</div>
-          <p>The mechanism debate, orexin system involvement, dopamine transporter inhibition, histamine pathway. Why it produces wakefulness without the same abuse liability as amphetamines.</p>
-          <span class="l-link">Read Lesson →</span>
-        </a>
-
-        <a href="wakefulness.html" class="lesson-card">
-          <div class="l-type">Xanthine / Adenosine Antagonist</div>
-          <div class="l-name">Caffeine</div>
-          <div class="l-aka">The most used psychoactive compound on earth</div>
-          <p>Adenosine receptor antagonism, the tolerance timeline, why it doesn't "give you energy," half-life, and how to use it strategically rather than habitually.</p>
-          <span class="l-link">Read Lesson →</span>
-        </a>
-
-        <a href="racetams.html" class="lesson-card">
-          <div class="l-type">Nootropic Class</div>
-          <div class="l-name">The Racetam Family</div>
-          <div class="l-aka">Piracetam, aniracetam, oxiracetam, and the rest</div>
-          <p>A shared pyrrolidone backbone but no single confirmed mechanism. What's genuinely established for each compound versus what's vendor and enthusiast consensus.</p>
-          <span class="l-link">Read Lesson →</span>
-        </a>
-
-      </div>
+    <div class="genre-list">
+      <a href="bdnf.html" class="genre-item">
+        <span class="g-name">BDNF</span>
+        <span class="g-desc">The most studied neurotrophin in cognitive performance research.</span>
+      </a>
+      <a href="ngf.html" class="genre-item">
+        <span class="g-name">NGF</span>
+        <span class="g-desc">The original neurotrophin, the cholinergic link, and the real Lion's Mane mechanism.</span>
+      </a>
+      <a href="igf-1.html" class="genre-item">
+        <span class="g-name">IGF-1</span>
+        <span class="g-desc">The growth factor that crosses the blood-brain barrier, and its cancer-risk tradeoff.</span>
+      </a>
     </div>
+  </section>
 
-    <!-- ── LIFESTYLE ── -->
-    <div class="cog-category">
-      <div class="cog-category-header">
-        <h2>Lifestyle Inputs</h2>
-        <span>What you do every day shapes your neurobiology</span>
-      </div>
-
-      <div class="lesson-grid">
-
-        <a href="lifestyle/exercise-neuroplasticity.html" class="lesson-card">
-          <div class="l-type">Lifestyle · Tier 1</div>
-          <div class="l-name">Exercise &amp; Neuroplasticity</div>
-          <p>Aerobic exercise is the single most consistent BDNF upregulator in the literature. How exercise intensity, duration, and type affect BDNF, IGF-1, and neurogenesis.</p>
-          <span class="l-link">Read Lesson →</span>
-        </a>
-
-        <a href="lifestyle/sleep-cognitive-function.html" class="lesson-card">
-          <div class="l-type">Lifestyle · Tier 1</div>
-          <div class="l-name">Sleep &amp; Cognitive Function</div>
-          <p>Glymphatic clearance of metabolic waste, memory consolidation during slow-wave sleep, the role of REM in emotional regulation — and what cutting sleep actually costs cognitively.</p>
-          <span class="l-link">Read Lesson →</span>
-        </a>
-
-        <a href="lifestyle/cold-exposure-brain.html" class="lesson-card">
-          <div class="l-type">Lifestyle · Tier 2</div>
-          <div class="l-name">Cold Exposure &amp; the Brain</div>
-          <p>Norepinephrine spike from cold exposure, potential BDNF effects, cold shock proteins. What the research shows and what's still extrapolated from rodent data.</p>
-          <span class="l-link">Read Lesson →</span>
-        </a>
-
-        <a href="lifestyle/testosterone-optimization.html" class="lesson-card">
-          <div class="l-type">Lifestyle · Tier 1</div>
-          <div class="l-name">Natural Testosterone Optimization</div>
-          <p>Sleep, resistance training, and body fat management have the strongest evidence base — cross-referenced against the aromatization mechanism in the Testosterone, DHT &amp; Estrogen lesson.</p>
-          <span class="l-link">Read Lesson →</span>
-        </a>
-
-      </div>
+  <!-- ── LONGEVITY & ENDOCRINOLOGY ── -->
+  <section class="genre-section" id="longevity-endocrinology">
+    <div class="genre-header">
+      <h2>Longevity &amp; Endocrinology</h2>
+      <span>Aging, hormones, and the tradeoffs underneath both</span>
     </div>
+    <div class="genre-list">
+      <a href="longevity-soma-theory.html" class="genre-item">
+        <span class="g-name">Longevity &amp; The Disposable Soma Theory</span>
+        <span class="g-desc">Why organisms age, plus the eunuch and bodybuilder data.</span>
+      </a>
+      <a href="testosterone-neurochemistry.html" class="genre-item">
+        <span class="g-name">Testosterone, DHT &amp; Estrogen</span>
+        <span class="g-desc">The real neurochemistry, and why testosterone's mood effect runs through estrogen.</span>
+      </a>
+      <a href="cortisol.html" class="genre-item">
+        <span class="g-name">Cortisol</span>
+        <span class="g-desc">The HPA axis, dysregulation in both directions, and the epigenetics of early stress.</span>
+      </a>
+      <a href="hair-loss-dht.html" class="genre-item">
+        <span class="g-name">Hair Loss &amp; DHT</span>
+        <span class="g-desc">The DHT mechanism, finasteride vs dutasteride, and topical alternatives.</span>
+      </a>
+      <a href="non-negotiables-pde5.html" class="genre-item">
+        <span class="g-name">Non-Negotiables: PDE5 Inhibition</span>
+        <span class="g-desc">The mechanism, the dementia-risk contradiction, and nutrient partitioning.</span>
+      </a>
+    </div>
+  </section>
 
+  <!-- ── PHARMACOLOGY ── -->
+  <section class="genre-section" id="pharmacology">
+    <div class="genre-header">
+      <h2>Pharmacology</h2>
+      <span>How drugs interact with the brain's systems</span>
+    </div>
+    <div class="genre-list">
+      <a href="ssri.html" class="genre-item">
+        <span class="g-name">SSRIs &amp; SNRIs</span>
+        <span class="g-desc">Mechanism, the delay, and the "chemical imbalance" oversimplification.</span>
+      </a>
+      <a href="amphetamines.html" class="genre-item">
+        <span class="g-name">Amphetamines &amp; Methylphenidate</span>
+        <span class="g-desc">Reverse transport vs reuptake inhibition, and the tolerance question.</span>
+      </a>
+      <a href="wakefulness.html" class="genre-item">
+        <span class="g-name">Modafinil &amp; Caffeine</span>
+        <span class="g-desc">Wakefulness without the same abuse liability, and why caffeine "gives you energy."</span>
+      </a>
+      <a href="racetams.html" class="genre-item">
+        <span class="g-name">The Racetam Family</span>
+        <span class="g-desc">Piracetam through phenylpiracetam, compared against what's actually established.</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ── LIFESTYLE INPUTS ── -->
+  <section class="genre-section" id="lifestyle-inputs">
+    <div class="genre-header">
+      <h2>Lifestyle Inputs</h2>
+      <span>What you do every day shapes your neurobiology</span>
+    </div>
+    <div class="genre-list">
+      <a href="lifestyle/exercise-neuroplasticity.html" class="genre-item">
+        <span class="g-name">Exercise &amp; Neuroplasticity</span>
+        <span class="g-desc">Which training variables actually move BDNF, and where the research disagrees.</span>
+      </a>
+      <a href="lifestyle/testosterone-optimization.html" class="genre-item">
+        <span class="g-name">Natural Testosterone Optimization</span>
+        <span class="g-desc">Sleep, resistance training, and body fat, the short list that's actually evidence-backed.</span>
+      </a>
+    </div>
+  </section>
+
+  <div class="coaching-section" style="text-align:center; padding: 3rem 2rem;">
+    <a href="start-here.html" style="font-size:0.85rem; letter-spacing:0.08em; color:#999; text-decoration:underline;">New here? Start with the foundations page →</a>
   </div>
 
   <footer>
@@ -387,6 +295,28 @@
         toggle.textContent = 'Menu';
         document.body.style.overflow = '';
       });
+    });
+
+    // Mobile/tap support for the dropdown, since hover doesn't apply
+    // on touch devices — tapping the parent link toggles the dropdown
+    // instead of navigating immediately, second tap or tapping a
+    // dropdown item navigates.
+    document.querySelectorAll('.has-dropdown > a').forEach(function (link) {
+      link.addEventListener('click', function (e) {
+        if (window.innerWidth <= 640) return; // in mobile overlay, dropdown is always visible
+        const parent = link.closest('.has-dropdown');
+        const alreadyOpen = parent.classList.contains('is-open');
+        if (!alreadyOpen) {
+          e.preventDefault();
+          document.querySelectorAll('.has-dropdown').forEach(function (li) { li.classList.remove('is-open'); });
+          parent.classList.add('is-open');
+        }
+      });
+    });
+    document.addEventListener('click', function (e) {
+      if (!e.target.closest('.has-dropdown')) {
+        document.querySelectorAll('.has-dropdown').forEach(function (li) { li.classList.remove('is-open'); });
+      }
     });
   })();
 </script>

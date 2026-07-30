@@ -366,7 +366,17 @@
         '  <a href="../index.html" class="site-nav__mark">100X Longevity</a>\n' +
         '  <ul class="site-nav__links">\n' +
         '    <li><a href="../index.html">Home</a></li>\n' +
-        '    <li><a href="../cognitive/index.html">Cognitive</a></li>\n' +
+        '    <li class="has-dropdown">\n' +
+        '      <a href="../cognitive/index.html">100X University</a>\n' +
+        '      <div class="site-nav__dropdown">\n' +
+        '        <a href="../cognitive/index.html#recovery">Recovery</a>\n' +
+        '        <a href="../cognitive/index.html#neurotransmitters">Neurotransmitters</a>\n' +
+        '        <a href="../cognitive/index.html#growth-factors">Growth Factors</a>\n' +
+        '        <a href="../cognitive/index.html#longevity-endocrinology">Longevity &amp; Endocrinology</a>\n' +
+        '        <a href="../cognitive/index.html#pharmacology">Pharmacology</a>\n' +
+        '        <a href="../cognitive/index.html#lifestyle-inputs">Lifestyle Inputs</a>\n' +
+        '      </div>\n' +
+        '    </li>\n' +
         '    <li><a href="../videos.html">Videos</a></li>\n' +
         '    <li><a href="../sources.html">Sources</a></li>\n' +
         '    <li><a href="../coaching.html">Coaching</a></li>\n' +
@@ -375,7 +385,17 @@
         '  <button class="site-nav__toggle" aria-label="Open menu" aria-expanded="false">Menu</button>\n' +
         '  <div class="site-nav__overlay">\n' +
         '    <a href="../index.html">Home</a>\n' +
-        '    <a href="../cognitive/index.html">Cognitive</a>\n' +
+        '    <div class="site-nav__overlay-group">\n' +
+        '      <a href="../cognitive/index.html">100X University</a>\n' +
+        '      <div class="site-nav__dropdown">\n' +
+        '        <a href="../cognitive/index.html#recovery">Recovery</a>\n' +
+        '        <a href="../cognitive/index.html#neurotransmitters">Neurotransmitters</a>\n' +
+        '        <a href="../cognitive/index.html#growth-factors">Growth Factors</a>\n' +
+        '        <a href="../cognitive/index.html#longevity-endocrinology">Longevity &amp; Endocrinology</a>\n' +
+        '        <a href="../cognitive/index.html#pharmacology">Pharmacology</a>\n' +
+        '        <a href="../cognitive/index.html#lifestyle-inputs">Lifestyle Inputs</a>\n' +
+        '      </div>\n' +
+        '    </div>\n' +
         '    <a href="../videos.html">Videos</a>\n' +
         '    <a href="../sources.html">Sources</a>\n' +
         '    <a href="../coaching.html">Coaching</a>\n' +
@@ -418,6 +438,23 @@
         '        toggle.textContent = \'Menu\';\n' +
         '        document.body.style.overflow = \'\';\n' +
         '      });\n' +
+        '    });\n' +
+        '    document.querySelectorAll(\'.has-dropdown > a\').forEach(function (link) {\n' +
+        '      link.addEventListener(\'click\', function (e) {\n' +
+        '        if (window.innerWidth <= 640) return;\n' +
+        '        var parent = link.closest(\'.has-dropdown\');\n' +
+        '        var alreadyOpen = parent.classList.contains(\'is-open\');\n' +
+        '        if (!alreadyOpen) {\n' +
+        '          e.preventDefault();\n' +
+        '          document.querySelectorAll(\'.has-dropdown\').forEach(function (li) { li.classList.remove(\'is-open\'); });\n' +
+        '          parent.classList.add(\'is-open\');\n' +
+        '        }\n' +
+        '      });\n' +
+        '    });\n' +
+        '    document.addEventListener(\'click\', function (e) {\n' +
+        '      if (!e.target.closest(\'.has-dropdown\')) {\n' +
+        '        document.querySelectorAll(\'.has-dropdown\').forEach(function (li) { li.classList.remove(\'is-open\'); });\n' +
+        '      }\n' +
         '    });\n' +
         '  })();\n' +
         SC + '\n' +
